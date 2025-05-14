@@ -285,89 +285,68 @@ main h2::after {
 
 /* Styles for Project Card Visuals/Previews */
 .project-visuals {
-    display: flex;
-    flex-wrap: wrap; /* Allows wrapping if space is very constrained, but we aim for side-by-side */
-    gap: 1rem;       /* Space between images */
+    display: flex; /* This will still work for one item */
+    flex-wrap: wrap;
+    gap: 1rem;
     margin-top: 1.25rem;
     margin-bottom: 1.25rem;
-    justify-content: center; /* Center the items if they don't fill the row */
+    justify-content: center; /* This will center your single visual-item */
 }
 
 .visual-item {
-    /* To make two items fit side-by-side within the flex container, considering the gap: */
-    flex-basis: calc(50% - 0.5rem); /* (50% of parent width - half the gap) */
-    /* If you had 3 images, it would be calc(33.33% - (2/3 * gap value)) etc. */
-    /* Or a simpler approach if you always expect 2 and want them to have some max size: */
-    /* flex: 1 1 auto; */ /* Let them take equal space but don't force a specific basis */
-    
-    max-width: 300px; /* You can set a max-width for each item if you don't want them too large */
-                        /* If you use flex-basis: calc(50% - 0.5rem), this max-width might still apply if the 50% width is larger */
-
-    /* Remove styles related to the caption if they are specific to text alignment */
-    /* text-align: center; */ /* No longer strictly needed if only image is present */
+    /* flex-basis: calc(50% - 0.5rem); */ /* This was for two items. For one, it can be simpler. */
+    flex-basis: auto; /* Let it take its content's width, up to max-width */
+    width: 100%; /* Allow it to take up to the full width of the visuals container if needed */
+    max-width: 600px; /* INCREASED MAX-WIDTH: Adjust this to how large you want the single summary image to be. */
+                       /* If Summary.png is wide, you might want a larger max-width. */
+                       /* If it's tall, this max-width will still constrain its width. */
 
     background-color: var(--card-bg-color);
-    padding: 0.5rem; /* Reduced padding slightly as there's no caption */
+    padding: 0.5rem;
     border-radius: 6px;
     border: 1px solid var(--border-color);
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    display: flex; /* To help center the image if it's smaller than the item */
+    display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .project-visuals img {
     width: 100%;
-    max-width: 100%; /* Image takes full width of its .visual-item container */
+    max-width: 100%;
     height: auto;
     border-radius: 4px;
-    /* margin-bottom: 0.5rem; */ /* Removed, no caption below */
     border: 1px solid rgba(255,255,255,0.1);
-    display: block; /* Good for images to remove extra space */
+    display: block;
 }
 
-/* Remove .visual-caption style as it's no longer used */
+/* Optional caption style - uncomment and modify if you add a caption back */
 /*
 .visual-caption {
     font-size: 0.8rem;
     color: var(--secondary-text-color);
     font-style: italic;
+    margin-top: 0.5rem;
 }
 */
 
-
 /* Responsive adjustments for project visuals */
-@media (max-width: 600px) { /* This is when they were stacking */
-    .project-visuals {
-        /* They will still be flex items, flex-wrap: wrap will handle stacking if needed */
-        /* If you want them side-by-side even on smaller screens until very narrow, */
-        /* you might not need to change flex-direction here. */
-        /* Let's keep them trying to be side-by-side and see how it looks. */
-        /* You can uncomment flex-direction: column if you prefer them stacked on small screens. */
-        /* flex-direction: column; */
-        /* align-items: center; */
-    }
+/* The existing media queries might not need much change, as they mostly handle wrapping */
+/* or stacking, which is less of an issue with a single centered item. */
+/* You can simplify or remove parts of these if they are no longer relevant. */
+
+@media (max-width: 600px) {
     .visual-item {
-        /* If they stack, they should take more width */
-        /* flex-basis: 90%; /* If stacking */
-        /* If trying to stay side-by-side, ensure they can shrink: */
-        flex-basis: calc(50% - 0.5rem); /* Still aim for 2 across if possible */
-        min-width: 150px; /* Prevent them from becoming too tiny before wrapping/stacking */
-        max-width: 90%; /* When they do stack (if container is too narrow), let them take more width */
+        /* min-width: 150px; */ /* Less relevant for a single item */
+        max-width: 95%; /* Allow it to be quite wide on smaller screens */
     }
 }
 
-@media (max-width: 400px) { /* For very small screens, ensure they stack */
-    .project-visuals {
-        flex-direction: column;
-        align-items: center;
-    }
+@media (max-width: 400px) {
     .visual-item {
-        flex-basis: 90%; /* When stacked */
-        max-width: 300px; /* Maintain a reasonable max width when stacked */
+        max-width: 100%; /* Can take full available width on very small screens */
     }
 }
-
 .project-tags {
     list-style: none;
     display: flex;
