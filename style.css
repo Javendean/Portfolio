@@ -86,88 +86,87 @@ section h2 {
     color: #333; /* Dark color for titles */
 }
 
-/* ===== START OF MODIFIED HERO SECTION AND RELATED STYLES ===== */
 
 /* Hero Section */
 #hero {
-    display: flex;
-    flex-direction: column; /* Align .hero-content centrally */
-    align-items: center;    /* Horizontally center .hero-content */
-    justify-content: center; /* Vertically center .hero-content */
-    min-height: 100vh;      /* Make hero section take full viewport height */
-    padding: 20px;          /* Adjust padding as needed */
-    box-sizing: border-box; /* Ensures padding is included in min-height calculation */
-    overflow: hidden;       /* Prevent this section from causing page scroll if content accidentally overflows */
-    text-align: center;     /* Fallback text alignment, useful for .hero-content before it becomes flex */
-    background-color: #f0f0f0; /* Retaining a light background for hero */
-    border-bottom: none; /* Hero section usually doesn't need a bottom border */
+    /* display: flex; */
+    /* align-items: center; */
+    /* justify-content: space-between; */
+    padding: 50px 20px;
+    background-color: #f0f0f0; /* Light grey background for the section */
+    /* min-height: 80vh; */
+    text-align: center;
 }
 
 .hero-content {
     display: flex;
     align-items: center;
-    justify-content: center; /* Center items if there's extra space on wider screens */
-    gap: clamp(20px, 4vw, 50px); /* Responsive gap */
+    justify-content: center;
+    gap: 50px;
     max-width: 1200px;
-    width: 100%; /* Take available width within #hero's padding */
     margin: 0 auto;
-    flex-wrap: wrap-reverse; /* Allows image to go above text on wrap for medium-wide screens */
-                               /* This behavior is overridden by flex-direction in the media query for narrow screens */
+    flex-wrap: wrap-reverse; /* Allows items to wrap, and image can go above text on small screens */
 }
 
 .hero-text {
-    flex: 1; /* Allow text to take available space in a flex row */
-    min-width: 280px; /* Minimum width before wrapping or shrinking further */
-    text-align: left; /* Default for wider screens */
+    flex: 1;
+    min-width: 300px;
+    text-align: left;
 }
 
+/* MODIFIED FONT SIZING FOR HERO TITLE */
 .hero-text h1 {
-    font-size: clamp(1.8em, 5vw, 2.8em); /* Fluid font size: min, preferred (viewport-based), max */
-    margin-bottom: 0.5em;
+    /* Original: font-size: 2.8em; */
+    font-size: clamp(1.7em, 3vw + 1em, 2.8em); /* Min, Preferred (viewport-based), Max */
+    line-height: 1.25; /* Adjusted for potentially smaller, multi-line text */
+    margin-bottom: 0.4em; /* Slightly adjusted margin */
     color: #333;
-    line-height: 1.2; /* Can be adjusted for tighter spacing if needed */
+    /* font-weight: bold; */
 }
 
+/* MODIFIED FONT SIZING FOR HERO SUBTITLE */
 .hero-text .subtitle {
-    font-size: clamp(0.9em, 2.5vw, 1.2em); /* Fluid font size */
-    line-height: 1.5; /* Adjust if needed, 1.4-1.6 is typical */
-    margin-bottom: clamp(1em, 4vh, 1.5em); /* Responsive margin before the button */
+    /* Original: font-size: 1.2em; */
+    font-size: clamp(0.85em, 1.5vw + 0.5em, 1.2em); /* Min, Preferred (viewport-based), Max */
+    line-height: 1.5; /* Original: 1.6, slightly adjusted */
+    margin-bottom: clamp(1em, 3vh, 1.5em); /* Responsive margin */
     color: #555;
 }
 
 .hero-image-container {
-    flex-basis: clamp(180px, 25vw, 300px); /* Responsive base size for image container */
-    max-width: clamp(180px, 25vw, 300px);  /* Ensure it doesn't get too big or too small */
-    flex-shrink: 0; /* Prevent image container from shrinking too much if text is long */
+    flex-basis: 300px;
+    /* flex-grow: 0; */
+    /* flex-shrink: 0; */
+    /* max-width: 350px; */
 }
 
 .hero-photo {
     max-width: 100%;
     height: auto;
-    border-radius: 50%;
-    display: block; /* Prevents extra space below image if container is precisely sized */
-    border: 3px solid #fff; /* Optional: white border around photo */
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15); /* Optional: subtle shadow */
+    border-radius: 50%; /* Circular image */
+    /* border: 5px solid #fff; */
+    /* box-shadow: 0 4px 8px rgba(0,0,0,0.1); */
 }
+
 
 /* Buttons */
 .btn {
     display: inline-block;
-    padding: clamp(10px, 2vh, 12px) clamp(20px, 3vw, 25px); /* Responsive padding */
+    padding: 12px 25px;
     background-color: #007bff; /* Primary button color */
-    color: white !important; /* Ensure text is white and override other color rules if needed */
+    color: white !important; /* Ensure text is white */
     text-decoration: none;
     border-radius: 5px;
-    font-size: clamp(0.9em, 2.2vw, 1em); /* Responsive font size for button */
-    transition: background-color 0.3s ease, transform 0.2s ease; /* Added transform transition */
+    font-size: 1em;
+    transition: background-color 0.3s ease, transform 0.2s ease;
     border: none;
     cursor: pointer;
-    font-weight: bold;
+    font-weight: bold; /* Added for consistency if needed */
 }
 
 .btn:hover {
     background-color: #0056b3; /* Darker shade on hover */
-    transform: translateY(-2px); /* Slight lift on hover */
+    transform: translateY(-2px); /* Slight lift effect */
 }
 
 .btn-secondary {
@@ -175,10 +174,9 @@ section h2 {
 }
 
 .btn-secondary:hover {
-    background-color: #545b62; /* Darker shade for secondary on hover */
+    background-color: #545b62;
 }
 
-/* ===== END OF MODIFIED HERO SECTION AND RELATED STYLES ===== */
 
 /* About Me Section */
 #about {
@@ -216,8 +214,8 @@ section h2 {
     padding: 25px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.05); /* Subtle shadow */
     transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover */
-    display: flex;
-    flex-direction: column; /* Ensure content within card stacks nicely */
+    display: flex; /* Added for better internal alignment if needed */
+    flex-direction: column; /* Stack card content vertically */
 }
 
 .project-card:hover {
@@ -232,22 +230,22 @@ section h2 {
 .project-title {
     font-size: 1.6em;
     color: #007bff; /* Link color for title */
-    margin: 0 0 5px 0; /* Reset margin and add some bottom margin */
+    margin: 0 0 5px 0;
 }
 
 .project-title a {
     text-decoration: none;
-    color: inherit; /* Inherit color from parent */
+    color: inherit;
 }
 
 .project-title a:hover {
-    text-decoration: underline; /* Underline on hover */
+    text-decoration: underline;
 }
 
 .project-date {
     font-size: 0.9em;
     color: #6c757d; /* Grey color for date/course */
-    display: block; /* Make it take its own line if needed */
+    display: block;
     margin-bottom: 10px;
 }
 
@@ -256,7 +254,7 @@ section h2 {
     line-height: 1.6;
     color: #555;
     margin-bottom: 20px;
-    flex-grow: 1; /* Allows description to take available space, pushing tags/links down */
+    flex-grow: 1; /* Allows description to take available space */
 }
 
 .project-visuals {
@@ -266,22 +264,22 @@ section h2 {
 .project-visuals img {
     max-width: 100%;
     height: auto;
-    border-radius: 4px; /* Slightly rounded corners for images */
-    border: 1px solid #eee; /* Light border for images */
+    border-radius: 4px;
+    border: 1px solid #eee;
 }
 
 
 .project-tags {
     list-style: none;
     padding: 0;
-    margin: 0 0 20px 0; /* Margin below tags */
+    margin: 0 0 20px 0;
     display: flex;
-    flex-wrap: wrap; /* Allow tags to wrap */
-    gap: 8px; /* Space between tags */
+    flex-wrap: wrap;
+    gap: 8px;
 }
 
 .project-tags li {
-    background-color: #007bff; /* Primary color for tags */
+    background-color: #007bff;
     color: white;
     padding: 5px 10px;
     border-radius: 4px;
@@ -289,8 +287,9 @@ section h2 {
 }
 
 .project-links .project-link {
-    /* Using .btn styles defined earlier */
-    margin-right: 10px; /* Space between multiple links */
+    /* Re-apply .btn styles or ensure they are inherited if this class is on a .btn element */
+    /* If .project-link is an <a> tag that should look like a button, it needs .btn class */
+    margin-right: 10px;
 }
 
 .project-links .project-link:last-child {
@@ -300,25 +299,25 @@ section h2 {
 
 /* Skills Section */
 #skills {
-    background-color: #fff; /* White background */
+    background-color: #fff;
 }
 
 .skills-list {
     list-style: none;
     padding: 0;
-    display: flex; /* Use flexbox for skills */
-    flex-wrap: wrap; /* Allow skills to wrap */
-    justify-content: center; /* Center skills */
-    gap: 15px; /* Space between skill items */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
 }
 
 .skills-list li {
-    background: #007bff; /* Primary color */
+    background: #007bff;
     color: white;
     padding: 10px 20px;
-    border-radius: 5px; /* Rounded corners for skill tags */
+    border-radius: 5px;
     font-size: 1em;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 /* Contact Section */
@@ -367,88 +366,51 @@ footer {
 /* Responsive Design */
 @media (max-width: 768px) {
     header .container {
-        flex-direction: column; /* Stack logo and nav */
+        flex-direction: column;
         text-align: center;
     }
 
     nav ul {
-        flex-direction: column; /* Stack nav links */
-        margin-top: 15px; /* Space above stacked nav */
+        flex-direction: column;
+        margin-top: 15px;
     }
 
     nav ul li {
-        margin: 10px 0; /* Vertical margin for stacked links */
+        margin: 10px 0;
     }
 
-    /* Hero section responsive adjustments */
     .hero-content {
-        flex-direction: column-reverse; /* Stacks image above text */
-        gap: clamp(20px, 5vh, 30px); /* Adjust gap for stacked layout, use vh for vertical rhythm */
+        flex-direction: column-reverse;
+        text-align: center;
+        gap: 30px; /* Adjusted from 25px to original 30px */
     }
 
     .hero-text {
-        text-align: center; /* Center text when stacked */
-        width: 90%; /* Control width of text block */
-        max-width: 500px; /* Prevent text line from becoming too wide on medium-stacked layouts */
-        margin-left: auto; /* Ensure centering of the block */
-        margin-right: auto;
-        flex-grow: 0; /* Don't let text block try to fill too much vertical space if image is small */
-        flex-basis: auto; /* Reset flex-basis when stacking */
+        text-align: center;
+        /* max-width: 90%; */ /* Kept commented as original */
+        /* margin: 0 auto; */ /* Kept commented as original */
     }
 
+    /* MODIFIED FONT SIZING FOR HERO TITLE IN MEDIA QUERY */
     .hero-text h1 {
-        font-size: clamp(1.7em, 7vw, 2.2em); /* Adjust clamp for narrower screens */
+        /* Original: font-size: 2.2em; */
+        font-size: clamp(1.5em, 5vw + 0.5em, 2.2em); /* Min, Preferred, Max (max is original media query size) */
+        line-height: 1.2; /* Adjusted */
     }
 
+    /* MODIFIED FONT SIZING FOR HERO SUBTITLE IN MEDIA QUERY */
     .hero-text .subtitle {
-        font-size: clamp(0.85em, 4vw, 1em); /* Adjust clamp for narrower screens */
-        line-height: 1.45; /* Slightly tighter line height */
-        margin-bottom: clamp(1.2em, 5vh, 1.8em);
+        /* Original: font-size: 1em; */
+        font-size: clamp(0.8em, 3vw + 0.4em, 1em); /* Min, Preferred, Max */
+        line-height: 1.45; /* Adjusted */
     }
 
-    .hero-image-container {
-        flex-basis: clamp(150px, 35vw, 220px); /* Adjust image size for stacked layout */
-        max-width: clamp(150px, 35vw, 220px);
-    }
-
-
-    /* Other sections responsive */
     section h2 {
-        font-size: 1.8em; /* Smaller section titles */
+        font-size: 1.8em;
     }
 
     .project-grid {
-        grid-template-columns: 1fr; /* Stack project cards */
-    }
-}
-
-/* Optional: Media query for very short screens (e.g., landscape mobile) */
-/* This targets screens that are short, even if they are reasonably wide */
-@media (max-height: 550px) {
-    #hero {
-      /* min-height might be less than 100vh if elements still don't fit, or adjust padding */
-      padding-top: 10px;
-      padding-bottom: 10px;
-    }
-    .hero-text h1 {
-        font-size: clamp(1.5em, 4vh, 2em); /* Further reduce font size based on viewport height */
-        margin-bottom: 0.3em;
-    }
-    .hero-text .subtitle {
-        font-size: clamp(0.75em, 3vh, 0.9em);
-        line-height: 1.3;
-        margin-bottom: clamp(0.8em, 3vh, 1.2em);
-    }
-    .hero-image-container {
-        flex-basis: clamp(120px, 25vh, 180px); /* Make image smaller on short screens */
-        max-width: clamp(120px, 25vh, 180px);
-    }
-    .btn { /* Apply to general .btn for consistency on short screens */
-        padding: clamp(8px, 1.8vh, 10px) clamp(15px, 2.5vw, 20px);
-        font-size: clamp(0.8em, 2vh, 0.9em);
-    }
-    .hero-content {
-        gap: clamp(10px, 2vh, 20px); /* Reduce gap further */
+        grid-template-columns: 1fr;
     }
 }
 
