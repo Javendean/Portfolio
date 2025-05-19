@@ -40,7 +40,7 @@ body {
     padding: 0 15px;
 }
 
-/* === Navigation Bar - Major Changes === */
+/* === Navigation Bar === */
 .navbar {
     background-color: rgba(18, 18, 18, 0.85); /* Semi-transparent dark */
     backdrop-filter: blur(10px); /* Glassmorphism effect */
@@ -61,48 +61,45 @@ body {
     max-width: 1100px; /* Max width for verse readability on very wide screens */
     display: flex;
     flex-direction: column; /* Stack logo and menu vertically */
-    align-items: center;   /* Center them horizontally */
-    text-align: center;    /* Default text alignment for children */
-    /* justify-content: space-between; /* Removed */
+    align-items: center;    /* Center them horizontally */
+    text-align: center;     /* Default text alignment for children */
 }
 
 .nav-logo {
     color: var(--primary-text-color);
     text-decoration: none;
-    font-style: italic; /* Ensured by <em> tag but good to have as a direct style */
-    /* Responsive Font Size for the Verse: min, preferred (viewport-based), max */
-    font-size: clamp(0.8rem, 3vw, 1.5rem); /* Adjust 3vw (preferred) and 1.5rem (max) as needed */
-                                          /* 0.8rem is the minimum size */
-    font-weight: 500; /* You can use 'normal' or a numeric value */
-    line-height: 1.5;  /* Adjust for readability if it wraps to multiple lines */
-    width: 100%;       /* Logo container takes full width of its parent (.navbar .container's centered block) */
-    margin-bottom: 0.75rem; /* Space between verse and nav menu */
+    font-style: italic;
+    font-size: clamp(0.8rem, 3vw, 1.5rem);
+    font-weight: 500;
+    line-height: 1.5;
+    width: 100%;
+    margin-bottom: 0.75rem;
 }
 
 .nav-logo em {
-    font-style: italic; /* Reinforce italic style for the <em> tag if needed */
+    font-style: italic;
 }
 
 .nav-menu {
     list-style: none;
-    display: flex;        /* Keep menu items in a horizontal row on desktop */
-    flex-wrap: wrap;      /* Allow menu items to wrap on very small screens or if many items */
-    justify-content: center; /* Center the flex items (li) within the ul */
-    padding-left: 0;      /* Remove default ul padding */
-    margin: 0;            /* Reset margin for the ul */
-    width: 100%;          /* Ensure nav-menu can also be part of centered layout */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-left: 0;
+    margin: 0;
+    width: 100%;
 }
 
 .nav-menu li {
-    margin: 0.25rem 0.75rem; /* Spacing around each menu item */
+    margin: 0.25rem 0.75rem;
 }
 
 .nav-menu a {
     color: var(--secondary-text-color);
     text-decoration: none;
-    font-size: 0.95rem; /* Slightly smaller to complement the verse */
+    font-size: 0.95rem;
     transition: color 0.3s ease;
-    white-space: nowrap; /* Prevent individual nav links from wrapping */
+    white-space: nowrap;
 }
 
 .nav-menu a:hover, .nav-menu a.active {
@@ -110,13 +107,11 @@ body {
 }
 
 .hamburger {
-    display: none; /* Initially hidden on desktop */
+    display: none;
     cursor: pointer;
-    margin-top: 0.75rem; /* Space above hamburger if nav menu is very short or not present on mobile */
-    /* The hamburger will be centered by the parent's align-items: center */
-    /* It will appear below the .nav-logo on mobile when nav-menu is hidden */
-    z-index: 1001; /* Ensure hamburger is clickable above other elements like an open menu */
-    position: relative; /* Helps with z-index stacking context */
+    margin-top: 0.75rem;
+    z-index: 1001;
+    position: relative;
 }
 
 .hamburger .bar {
@@ -139,38 +134,42 @@ body {
     text-align: center;
     padding-top: 180px; /* SIGNIFICANTLY INCREASED - Adjust this based on your navbar's final height */
     padding-bottom: 60px;
-    /* Using the general .container for content centering within the hero section */
 }
 
 .hero-image-container {
     margin-bottom: 2.5rem;
-    width: 100%; /* Allows image to be centered within */
+    width: 100%;
     display: flex;
     justify-content: center;
 }
 
+/* MODIFIED HERO PHOTO FOR AUTO-SIZING */
 .hero-photo {
     width: 100%;
-    max-width: 200px;
+    max-width: clamp(120px, 25vw, 200px); /* Min, Preferred (viewport-width based), Max */
     height: auto;
-    border-radius: 50%; /* Circular image */
-    object-fit: cover; /* Good for ensuring image fills the circle if not perfectly square */
+    border-radius: 50%;
+    object-fit: cover;
     border: 4px solid var(--accent-color);
     box-shadow: 0 8px 25px rgba(0,0,0,0.3);
     display: block;
 }
 
+/* MODIFIED HERO TITLE FOR AUTO-SIZING */
 .hero-section h1 {
-    font-size: 2.8rem;
+    font-size: clamp(1.6rem, 4vw + 0.8rem, 2.8rem); /* Min, Preferred, Max */
+    line-height: 1.25; /* Adjusted for better wrapping */
     margin-bottom: 0.5rem;
     color: var(--primary-text-color);
 }
 
+/* MODIFIED HERO SUBTITLE FOR AUTO-SIZING */
 .hero-section .subtitle {
-    font-size: 1.3rem;
+    font-size: clamp(0.85rem, 2vw + 0.4rem, 1.3rem); /* Min, Preferred, Max */
+    line-height: 1.6; /* Good for readability of longer text */
     color: var(--secondary-text-color);
-    margin-bottom: 2rem;
-    max-width: 600px;
+    margin-bottom: clamp(1.5rem, 4vh, 2rem); /* Responsive bottom margin */
+    max-width: 600px; /* Retain for readability, text will wrap within this */
     margin-left: auto;
     margin-right: auto;
 }
@@ -194,7 +193,6 @@ body {
 /* General Section Styling */
 main section {
     padding: 80px 0;
-    /* Sections will use the general .container class for their content width */
 }
 
 main h2 {
@@ -283,24 +281,19 @@ main h2::after {
     color: var(--secondary-text-color);
 }
 
-/* Styles for Project Card Visuals/Previews */
 .project-visuals {
-    display: flex; /* This will still work for one item */
+    display: flex;
     flex-wrap: wrap;
     gap: 1rem;
     margin-top: 1.25rem;
     margin-bottom: 1.25rem;
-    justify-content: center; /* This will center your single visual-item */
+    justify-content: center;
 }
 
 .visual-item {
-    /* flex-basis: calc(50% - 0.5rem); */ /* This was for two items. For one, it can be simpler. */
-    flex-basis: auto; /* Let it take its content's width, up to max-width */
-    width: 100%; /* Allow it to take up to the full width of the visuals container if needed */
-    max-width: 600px; /* INCREASED MAX-WIDTH: Adjust this to how large you want the single summary image to be. */
-                       /* If Summary.png is wide, you might want a larger max-width. */
-                       /* If it's tall, this max-width will still constrain its width. */
-
+    flex-basis: auto;
+    width: 100%;
+    max-width: 600px;
     background-color: var(--card-bg-color);
     padding: 0.5rem;
     border-radius: 6px;
@@ -320,31 +313,15 @@ main h2::after {
     display: block;
 }
 
-/* Optional caption style - uncomment and modify if you add a caption back */
-/*
-.visual-caption {
-    font-size: 0.8rem;
-    color: var(--secondary-text-color);
-    font-style: italic;
-    margin-top: 0.5rem;
-}
-*/
-
-/* Responsive adjustments for project visuals */
-/* The existing media queries might not need much change, as they mostly handle wrapping */
-/* or stacking, which is less of an issue with a single centered item. */
-/* You can simplify or remove parts of these if they are no longer relevant. */
-
 @media (max-width: 600px) {
     .visual-item {
-        /* min-width: 150px; */ /* Less relevant for a single item */
-        max-width: 95%; /* Allow it to be quite wide on smaller screens */
+        max-width: 95%;
     }
 }
 
 @media (max-width: 400px) {
     .visual-item {
-        max-width: 100%; /* Can take full available width on very small screens */
+        max-width: 100%;
     }
 }
 .project-tags {
@@ -467,50 +444,43 @@ main h2::after {
 
 /* === Responsive Design === */
 @media (max-width: 768px) {
-    /* Navbar container on tablets might not need specific changes if column layout is already good */
-    /* .navbar .container {} */
-
     .nav-logo {
-        font-size: clamp(0.75rem, 4vw, 1.3rem); /* Adjust responsive font for tablets */
+        font-size: clamp(0.75rem, 4vw, 1.3rem);
         margin-bottom: 0.5rem;
     }
 
     .nav-menu {
-        /* Mobile menu overlay styles */
         position: fixed;
-        left: -100%; /* Hidden off-screen */
+        left: -100%;
         top: 0;
-        flex-direction: column; /* Stack menu items vertically in mobile overlay */
+        flex-direction: column;
         background-color: var(--primary-bg-color);
         width: 100%;
-        height: 100vh; /* Full height */
+        height: 100vh;
         transition: left 0.3s ease-in-out;
-        box-shadow: 2px 0 10px rgba(0,0,0,0.1); /* Shadow on the edge */
-        padding-top: 80px; /* Space from top for menu items to not be under status bar / notch */
-        justify-content: flex-start; /* Align items to top in vertical mobile menu */
-        align-items: center; /* Center items horizontally */
-        z-index: 1000; /* Below hamburger when closed, but content is inside */
+        box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+        padding-top: 80px;
+        justify-content: flex-start;
+        align-items: center;
+        z-index: 1000;
     }
 
     .nav-menu.active {
-        left: 0; /* Slide in */
+        left: 0;
     }
 
     .nav-menu li {
-        margin: 1rem 0; /* More vertical spacing for mobile menu items */
+        margin: 1rem 0;
     }
 
     .nav-menu a {
-        font-size: 1.1rem; /* Larger tap targets for mobile */
+        font-size: 1.1rem;
     }
 
     .hamburger {
-        display: block; /* Show hamburger */
-        /* Hamburger is already centered by .navbar .container's align-items: center */
-        /* It will appear below the .nav-logo if .nav-menu (text links) are hidden */
+        display: block;
     }
 
-    /* Hamburger icon transform to "X" when menu is active */
     .hamburger.active .bar:nth-child(2) {
         opacity: 0;
     }
@@ -524,41 +494,56 @@ main h2::after {
     .hero-section {
         padding-top: 150px; /* Adjust based on actual navbar height on tablets */
     }
+    /* MODIFIED HERO PHOTO FOR AUTO-SIZING (TABLET) */
+    .hero-photo {
+        max-width: clamp(110px, 22vw, 180px);
+    }
+    /* MODIFIED HERO TITLE FOR AUTO-SIZING (TABLET) */
     .hero-section h1 {
-        font-size: 2.2rem;
+        font-size: clamp(1.4rem, 5vw + 0.6rem, 2.2rem);
+        line-height: 1.2;
     }
+    /* MODIFIED HERO SUBTITLE FOR AUTO-SIZING (TABLET) */
     .hero-section .subtitle {
-        font-size: 1.1rem;
+        font-size: clamp(0.8rem, 2.5vw + 0.3rem, 1.1rem);
+        line-height: 1.5;
     }
+
     main h2 {
         font-size: 1.8rem;
     }
     .project-title a {
         font-size: 1.3rem;
     }
-    .hero-photo {
-        max-width: 180px;
-    }
 }
 
 @media (max-width: 480px) {
     .nav-logo {
-        font-size: clamp(0.7rem, 5vw, 1.1rem); /* Further adjust for small mobiles */
-        width: 95%; /* Allow logo to use slightly more width on small screens */
+        font-size: clamp(0.7rem, 5vw, 1.1rem);
+        width: 95%;
     }
     .nav-menu a {
-        font-size: 1rem; /* Slightly smaller for very small screens if needed */
+        font-size: 1rem;
     }
 
     .hero-section {
         padding-top: 130px; /* Adjust based on actual navbar height on small mobiles */
     }
+    /* MODIFIED HERO PHOTO FOR AUTO-SIZING (MOBILE) */
+    .hero-photo {
+        max-width: clamp(100px, 20vw, 150px);
+    }
+    /* MODIFIED HERO TITLE FOR AUTO-SIZING (MOBILE) */
     .hero-section h1 {
-        font-size: 1.8rem;
+        font-size: clamp(1.2rem, 6vw + 0.4rem, 1.8rem);
+        line-height: 1.2;
     }
+    /* MODIFIED HERO SUBTITLE FOR AUTO-SIZING (MOBILE) */
     .hero-section .subtitle {
-        font-size: 1rem;
+        font-size: clamp(0.75rem, 3vw + 0.25rem, 1rem);
+        line-height: 1.45;
     }
+
     .cta-button {
         padding: 10px 20px;
         font-size: 0.9rem;
@@ -577,8 +562,5 @@ main h2::after {
     .project-date {
         margin-left: 0; /* Reset margin */
         margin-top: 0.25rem;
-    }
-    .hero-photo {
-        max-width: 150px;
     }
 }
