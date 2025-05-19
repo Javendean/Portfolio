@@ -35,7 +35,7 @@ body {
 /* Container for general content sections (not navbar) */
 .container {
     width: 90%;
-    max-width: 960px;
+    max-width: 960px; /* Default max-width for general sections */
     margin: 0 auto;
     padding: 0 15px;
 }
@@ -57,12 +57,12 @@ body {
 }
 
 .navbar .container {
-    width: 90%; /* Container for navbar content takes up most of the navbar width */
-    max-width: 1100px; /* Max width for verse readability on very wide screens */
+    width: 90%;
+    max-width: 1100px;
     display: flex;
-    flex-direction: column; /* Stack logo and menu vertically */
-    align-items: center;    /* Center them horizontally */
-    text-align: center;     /* Default text alignment for children */
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
 .nav-logo {
@@ -132,21 +132,31 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding-top: 180px; /* SIGNIFICANTLY INCREASED - Adjust this based on your navbar's final height */
+    padding-top: 180px; /* Adjust this based on your navbar's final height */
     padding-bottom: 60px;
+    /* overflow-x: hidden; /* Uncomment if needed */
 }
 
-.hero-image-container {
-    margin-bottom: 2.5rem;
-    width: 100%;
+/* MODIFIED: .container within .hero-section for side-by-side layout */
+.hero-section .container {
     display: flex;
-    justify-content: center;
+    flex-direction: row;    /* Image left, text right by default */
+    align-items: center;    /* Vertically align image and text block */
+    justify-content: center;/* Center the pair if they don't fill max-width */
+    gap: 2.5rem;            /* Space between image and text block */
+    max-width: 1100px;      /* Increased max-width for hero layout */
+    width: 90%;             /* Maintain overall width responsiveness */
 }
 
-/* MODIFIED HERO PHOTO FOR AUTO-SIZING */
-.hero-photo {
+/* MODIFIED: .hero-image-container for flex layout */
+.hero-image-container {
+    margin-bottom: 0; /* Remove bottom margin, no longer needed for vertical stacking */
+    flex-shrink: 0;   /* Prevent image from shrinking disproportionately */
+}
+
+.hero-photo { /* With auto-sizing max-width */
     width: 100%;
-    max-width: clamp(120px, 25vw, 200px); /* Min, Preferred (viewport-width based), Max */
+    max-width: clamp(120px, 25vw, 200px); /* Min, Preferred, Max */
     height: auto;
     border-radius: 50%;
     object-fit: cover;
@@ -155,23 +165,39 @@ body {
     display: block;
 }
 
-/* MODIFIED HERO TITLE FOR AUTO-SIZING */
-.hero-section h1 {
+/* NEW: Wrapper for hero text content */
+.hero-text-content {
+    flex: 1; /* Allow text content to take up available space */
+    text-align: left; /* Align text to the left for this block */
+    max-width: 650px; /* Optional: constrain text width */
+}
+
+/* Auto-sizing Hero Title (styles inherited from .hero-section h1) */
+.hero-section h1 { /* This rule applies to h1 inside .hero-text-content too */
     font-size: clamp(1.6rem, 4vw + 0.8rem, 2.8rem); /* Min, Preferred, Max */
-    line-height: 1.25; /* Adjusted for better wrapping */
-    margin-bottom: 0.5rem;
+    line-height: 1.25;
+    margin-bottom: 0.75rem; /* Adjusted margin */
     color: var(--primary-text-color);
 }
 
-/* MODIFIED HERO SUBTITLE FOR AUTO-SIZING */
-.hero-section .subtitle {
+/* Auto-sizing Hero Subtitle (styles inherited from .hero-section .subtitle) */
+.hero-section .subtitle { /* This rule applies to .subtitle inside .hero-text-content too */
     font-size: clamp(0.85rem, 2vw + 0.4rem, 1.3rem); /* Min, Preferred, Max */
-    line-height: 1.6; /* Good for readability of longer text */
+    line-height: 1.6;
     color: var(--secondary-text-color);
     margin-bottom: clamp(1.5rem, 4vh, 2rem); /* Responsive bottom margin */
-    max-width: 600px; /* Retain for readability, text will wrap within this */
-    margin-left: auto;
-    margin-right: auto;
+    max-width: 600px; /* Applies to the paragraph for line length */
+    /* margin-left and margin-right will be 0 due to .hero-text-content's text-align: left */
+}
+
+/* Ensure .subtitle within .hero-text-content doesn't have conflicting auto margins */
+.hero-text-content .subtitle {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.hero-text-content .cta-button {
+    margin-top: 1.5rem; /* Space above button */
 }
 
 .cta-button {
@@ -216,11 +242,11 @@ main h2::after {
 
 /* About Section */
 .about-content {
-    /* Image was removed from here, so this primarily styles the .about-text container */
+    /* Styles for .about-content if any */
 }
 
 .about-text {
-    min-width: 280px; /* Ensures some minimum width for readability */
+    min-width: 280px;
     font-size: 1.05rem;
 }
 
@@ -232,7 +258,7 @@ main h2::after {
 /* Projects Section */
 .project-grid {
     display: grid;
-    grid-template-columns: 1fr; /* Single column layout */
+    grid-template-columns: 1fr;
     gap: 2.5rem;
 }
 
@@ -252,7 +278,7 @@ main h2::after {
     justify-content: space-between;
     align-items: baseline;
     margin-bottom: 0.75rem;
-    flex-wrap: wrap; /* Allow title and date to wrap if needed */
+    flex-wrap: wrap;
 }
 
 .project-title a {
@@ -271,8 +297,8 @@ main h2::after {
     font-family: var(--font-mono);
     font-size: 0.9rem;
     color: var(--secondary-text-color);
-    margin-left: 1rem; /* Space from title if on same line */
-    white-space: nowrap; /* Keep date on one line */
+    margin-left: 1rem;
+    white-space: nowrap;
 }
 
 .project-description {
@@ -333,10 +359,10 @@ main h2::after {
 }
 
 .project-tags li {
-    background-color: rgba(187, 134, 252, 0.1); /* Faint accent background */
+    background-color: rgba(187, 134, 252, 0.1);
     color: var(--accent-color);
     padding: 0.25rem 0.75rem;
-    border-radius: 15px; /* Pill-shaped tags */
+    border-radius: 15px;
     font-size: 0.8rem;
     font-family: var(--font-mono);
 }
@@ -398,7 +424,7 @@ main h2::after {
 .contact-section {
     text-align: center;
 }
-.contact-section h2::after { /* Center the underline for centered heading */
+.contact-section h2::after {
     left: 50%;
     transform: translateX(-50%);
 }
@@ -426,7 +452,7 @@ main h2::after {
     color: var(--secondary-text-color);
     text-decoration: none;
     margin: 0 1rem;
-    font-size: 1rem; /* Or use icons */
+    font-size: 1rem;
     transition: color 0.3s ease;
 }
 .social-links a:hover {
@@ -492,18 +518,38 @@ main h2::after {
     }
 
     .hero-section {
-        padding-top: 150px; /* Adjust based on actual navbar height on tablets */
+        padding-top: 150px;
     }
-    /* MODIFIED HERO PHOTO FOR AUTO-SIZING (TABLET) */
-    .hero-photo {
+    /* MODIFIED: Hero container for stacking */
+    .hero-section .container {
+        flex-direction: column; /* Stack image and text */
+        max-width: 90%;    /* Adjust max-width for stacked layout */
+        gap: 2rem; /* Maintain or adjust gap for vertical stacking */
+    }
+
+    /* MODIFIED: Hero image container for stacking */
+    .hero-image-container {
+        margin-bottom: 2rem; /* Add back margin for vertical stacking */
+    }
+    .hero-photo { /* Auto-sizing for tablet */
         max-width: clamp(110px, 22vw, 180px);
     }
-    /* MODIFIED HERO TITLE FOR AUTO-SIZING (TABLET) */
+
+    /* MODIFIED: Hero text content for stacking */
+    .hero-text-content {
+        text-align: center; /* Center text when stacked */
+    }
+    .hero-text-content .subtitle { /* Ensure subtitle centers correctly when block is centered */
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Auto-sizing Hero Title for tablet */
     .hero-section h1 {
         font-size: clamp(1.4rem, 5vw + 0.6rem, 2.2rem);
         line-height: 1.2;
     }
-    /* MODIFIED HERO SUBTITLE FOR AUTO-SIZING (TABLET) */
+    /* Auto-sizing Hero Subtitle for tablet */
     .hero-section .subtitle {
         font-size: clamp(0.8rem, 2.5vw + 0.3rem, 1.1rem);
         line-height: 1.5;
@@ -527,18 +573,25 @@ main h2::after {
     }
 
     .hero-section {
-        padding-top: 130px; /* Adjust based on actual navbar height on small mobiles */
+        padding-top: 130px;
     }
-    /* MODIFIED HERO PHOTO FOR AUTO-SIZING (MOBILE) */
-    .hero-photo {
+    /* Further adjustments for hero stacking on small mobile */
+    .hero-section .container {
+        gap: 1.5rem;
+    }
+    .hero-image-container {
+        margin-bottom: 1.5rem;
+    }
+    .hero-photo { /* Auto-sizing for mobile */
         max-width: clamp(100px, 20vw, 150px);
     }
-    /* MODIFIED HERO TITLE FOR AUTO-SIZING (MOBILE) */
+
+    /* Auto-sizing Hero Title for mobile */
     .hero-section h1 {
         font-size: clamp(1.2rem, 6vw + 0.4rem, 1.8rem);
         line-height: 1.2;
     }
-    /* MODIFIED HERO SUBTITLE FOR AUTO-SIZING (MOBILE) */
+    /* Auto-sizing Hero Subtitle for mobile */
     .hero-section .subtitle {
         font-size: clamp(0.75rem, 3vw + 0.25rem, 1rem);
         line-height: 1.45;
@@ -556,11 +609,11 @@ main h2::after {
         margin-bottom: 2rem;
     }
     .project-header {
-        flex-direction: column; /* Stack project title and date */
+        flex-direction: column;
         align-items: flex-start;
     }
     .project-date {
-        margin-left: 0; /* Reset margin */
+        margin-left: 0;
         margin-top: 0.25rem;
     }
 }
