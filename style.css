@@ -1,430 +1,570 @@
-/* General Body Styles */
-body {
-    font-family: 'Helvetica Neue', Arial, sans-serif; /* Modern, clean font */
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4; /* Light grey background for the whole page */
-    color: #333; /* Default text color */
-    overflow-x: hidden; /* Prevent horizontal scrollbars */
+/* style.css */
+
+/* Basic Reset & Root Variables */
+:root {
+    --primary-bg-color: #121212;
+    --primary-text-color: #e0e0e0;
+    --secondary-text-color: #a0a0a0;
+    --accent-color: #bb86fc; /* Example accent color (purple) - change as you like */
+    --card-bg-color: #1e1e1e;
+    --border-color: #333333;
+    --link-hover-color: #ffffff;
+
+    --font-primary: 'Inter', sans-serif;
+    --font-mono: 'Roboto Mono', monospace;
 }
 
-/* Header Styles */
-header {
-    background: #333; /* Dark background for header */
-    color: #fff; /* White text */
-    padding: 1rem 0;
-    text-align: center;
-    position: sticky; /* Sticky header */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--primary-bg-color);
+    color: var(--primary-text-color);
+    line-height: 1.7;
+    font-size: 16px; /* Base font size */
+}
+
+/* Container for general content sections (not navbar) */
+.container {
+    width: 90%;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* === Navigation Bar - Major Changes === */
+.navbar {
+    background-color: rgba(18, 18, 18, 0.85); /* Semi-transparent dark */
+    backdrop-filter: blur(10px); /* Glassmorphism effect */
+    padding: 1rem 0; /* Overall padding for the navbar */
+    position: fixed;
+    width: 100%;
     top: 0;
-    z-index: 1000; /* Ensure header stays on top */
+    left: 0;
+    z-index: 1000;
+    border-bottom: 1px solid var(--border-color);
+    min-height: auto; /* Let content determine height */
+    display: flex;
+    justify-content: center; /* Center the .navbar .container */
+}
+
+.navbar .container {
+    width: 90%; /* Container for navbar content takes up most of the navbar width */
+    max-width: 1100px; /* Max width for verse readability on very wide screens */
+    display: flex;
+    flex-direction: column; /* Stack logo and menu vertically */
+    align-items: center;    /* Center them horizontally */
+    text-align: center;     /* Default text alignment for children */
+}
+
+.nav-logo {
+    color: var(--primary-text-color);
+    text-decoration: none;
+    font-style: italic;
+    font-size: clamp(0.8rem, 3vw, 1.5rem);
+    font-weight: 500;
+    line-height: 1.5;
+    width: 100%;
+    margin-bottom: 0.75rem;
+}
+
+.nav-logo em {
+    font-style: italic;
+}
+
+.nav-menu {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-left: 0;
+    margin: 0;
     width: 100%;
 }
 
-header .container {
-    display: flex;
-    justify-content: space-between; /* Align items to start and end */
-    align-items: center;
-    max-width: 1200px; /* Max width of header content */
-    margin: 0 auto; /* Center header content */
-    padding: 0 20px; /* Padding inside the container */
+.nav-menu li {
+    margin: 0.25rem 0.75rem;
 }
 
-header .logo {
-    font-size: 1.8em; /* Logo size */
-    font-weight: bold;
-    color: #fff; /* Ensure logo is white */
-    text-decoration: none; /* Remove underline from link */
+.nav-menu a {
+    color: var(--secondary-text-color);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+    white-space: nowrap;
 }
 
-
-nav ul {
-    padding: 0;
-    list-style: none; /* Remove default bullet points */
-    display: flex; /* Align nav items in a row */
+.nav-menu a:hover, .nav-menu a.active {
+    color: var(--accent-color);
 }
 
-nav ul li {
-    margin-left: 20px; /* Space between nav items */
+.hamburger {
+    display: none;
+    cursor: pointer;
+    margin-top: 0.75rem;
+    z-index: 1001;
+    position: relative;
 }
 
-nav ul li a {
-    color: #fff; /* White links */
-    text-decoration: none; /* Remove underline */
-    font-size: 1em; /* Nav link size */
-    transition: color 0.3s ease; /* Smooth color transition on hover */
-}
-
-nav ul li a:hover,
-nav ul li a.active { /* Style for active link */
-    color: #007bff; /* Highlight color on hover/active */
-}
-
-/* Utility Classes */
-.container {
-    width: 90%; /* Default container width */
-    max-width: 1200px; /* Max width */
-    margin: auto; /* Center container */
-    overflow: hidden; /* Clear floats */
-    padding: 0 20px; /* Padding for content sections */
-}
-
-/* Section Base Styles */
-section {
-    padding: 40px 0; /* Vertical padding for sections */
-    /* border-bottom: 1px solid #ddd; */ /* Optional separator */
-}
-
-section:last-of-type {
-    border-bottom: none; /* No border for the last section */
-}
-
-section h2 {
-    text-align: center; /* Center section titles */
-    margin-bottom: 30px; /* Space below section titles */
-    font-size: 2.2em; /* Section title size */
-    color: #333; /* Dark color for titles */
+.hamburger .bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    background-color: var(--primary-text-color);
+    transition: all 0.3s ease-in-out;
 }
 
 
 /* Hero Section */
-#hero {
-    /* display: flex; */
-    /* align-items: center; */
-    /* justify-content: space-between; */
-    padding: 50px 20px;
-    background-color: #f0f0f0; /* Light grey background for the section */
-    /* min-height: 80vh; */
-    text-align: center;
-}
-
-.hero-content {
+.hero-section {
+    min-height: 90vh; /* Keeps the hero section tall */
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 50px;
-    max-width: 1200px;
-    margin: 0 auto;
-    flex-wrap: wrap-reverse; /* Allows items to wrap, and image can go above text on small screens */
-}
-
-.hero-text {
-    flex: 1;
-    min-width: 300px;
-    text-align: left;
-}
-
-/* MODIFIED FONT SIZING FOR HERO TITLE */
-.hero-text h1 {
-    /* Original: font-size: 2.8em; */
-    font-size: clamp(1.7em, 3vw + 1em, 2.8em); /* Min, Preferred (viewport-based), Max */
-    line-height: 1.25; /* Adjusted for potentially smaller, multi-line text */
-    margin-bottom: 0.4em; /* Slightly adjusted margin */
-    color: #333;
-    /* font-weight: bold; */
-}
-
-/* MODIFIED FONT SIZING FOR HERO SUBTITLE */
-.hero-text .subtitle {
-    /* Original: font-size: 1.2em; */
-    font-size: clamp(0.85em, 1.5vw + 0.5em, 1.2em); /* Min, Preferred (viewport-based), Max */
-    line-height: 1.5; /* Original: 1.6, slightly adjusted */
-    margin-bottom: clamp(1em, 3vh, 1.5em); /* Responsive margin */
-    color: #555;
+    text-align: center;
+    padding-top: 180px; /* For fixed navbar. You might need to adjust this if your navbar height changes with the verse. */
+    padding-bottom: 60px;
+    /* overflow: hidden; */ /* Optional: if content strictly must not exceed 90vh, but better to make content fit */
 }
 
 .hero-image-container {
-    flex-basis: 300px;
-    /* flex-grow: 0; */
-    /* flex-shrink: 0; */
-    /* max-width: 350px; */
+    margin-bottom: 2.5rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .hero-photo {
-    max-width: 100%;
+    width: 100%;
+    max-width: 200px;
     height: auto;
-    border-radius: 50%; /* Circular image */
-    /* border: 5px solid #fff; */
-    /* box-shadow: 0 4px 8px rgba(0,0,0,0.1); */
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--accent-color);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    display: block;
 }
 
+/* MODIFIED HERO TITLE FONT SIZE */
+.hero-section h1 {
+    /* Original: font-size: 2.8rem; */
+    font-size: clamp(1.8rem, 4vw + 1rem, 2.8rem); /* Min, Preferred (viewport-based), Max */
+    line-height: 1.2; /* Adjusted for better readability if it wraps */
+    margin-bottom: 0.5rem;
+    color: var(--primary-text-color);
+}
 
-/* Buttons */
-.btn {
+/* MODIFIED HERO SUBTITLE FONT SIZE */
+.hero-section .subtitle {
+    /* Original: font-size: 1.3rem; */
+    font-size: clamp(0.9rem, 2vw + 0.5rem, 1.3rem); /* Min, Preferred, Max */
+    line-height: 1.6; /* Adjusted for readability */
+    color: var(--secondary-text-color);
+    margin-bottom: 2rem; /* Or clamp(1.5rem, 4vh, 2rem) for responsive bottom margin */
+    max-width: 600px; /* Keeps subtitle readable */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cta-button {
     display: inline-block;
+    background-color: var(--accent-color);
+    color: var(--primary-bg-color) !important; /* Ensure text color contrasts with accent */
     padding: 12px 25px;
-    background-color: #007bff; /* Primary button color */
-    color: white !important; /* Ensure text is white */
     text-decoration: none;
+    font-weight: 700;
     border-radius: 5px;
-    font-size: 1em;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    border: none;
-    cursor: pointer;
-    font-weight: bold; /* Added for consistency if needed */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-size: clamp(0.9rem, 2vw, 1rem); /* Responsive font size for button */
 }
 
-.btn:hover {
-    background-color: #0056b3; /* Darker shade on hover */
-    transform: translateY(-2px); /* Slight lift effect */
+.cta-button:hover {
+    background-color: color-mix(in srgb, var(--accent-color) 90%, #fff);
+    transform: translateY(-2px);
 }
 
-.btn-secondary {
-    background-color: #6c757d; /* Secondary button color */
+/* General Section Styling */
+main section {
+    padding: 80px 0;
 }
 
-.btn-secondary:hover {
-    background-color: #545b62;
+main h2 {
+    font-size: 2.2rem;
+    margin-bottom: 3rem;
+    text-align: left;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+main h2::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 50px;
+    height: 3px;
+    background-color: var(--accent-color);
 }
 
 
-/* About Me Section */
-#about {
-    background-color: #fff; /* White background for contrast */
-    padding: 60px 20px; /* More padding for about section */
+/* About Section */
+.about-content {
+    /* Image was removed from here, so this primarily styles the .about-text container */
 }
 
-#about .container {
-    max-width: 900px; /* Slightly narrower for readability */
+.about-text {
+    min-width: 280px;
+    font-size: 1.05rem;
 }
 
-#about p {
-    font-size: 1.1em; /* Slightly larger font for readability */
-    line-height: 1.7;
-    margin-bottom: 1em; /* Space between paragraphs */
-    text-align: justify; /* Justify text for a cleaner look, optional */
+.about-text p {
+    margin-bottom: 1.25rem;
 }
 
 
 /* Projects Section */
-#projects {
-    background-color: #e9ecef; /* Light background for projects */
-}
-
 .project-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
-    gap: 30px; /* Space between project cards */
+    grid-template-columns: 1fr; /* Single column layout */
+    gap: 2.5rem;
 }
 
 .project-card {
-    background: #fff; /* White background for cards */
-    border: 1px solid #ddd; /* Subtle border */
-    border-radius: 8px; /* Rounded corners */
-    padding: 25px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.05); /* Subtle shadow */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover */
-    display: flex; /* Added for better internal alignment if needed */
-    flex-direction: column; /* Stack card content vertically */
+    background-color: transparent;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.3s ease;
 }
 
-.project-card:hover {
-    transform: translateY(-5px); /* Lift card on hover */
-    box-shadow: 0 6px 12px rgba(0,0,0,0.1); /* Enhanced shadow on hover */
+.project-card:last-child {
+    border-bottom: none;
 }
 
 .project-header {
-    margin-bottom: 15px;
-}
-
-.project-title {
-    font-size: 1.6em;
-    color: #007bff; /* Link color for title */
-    margin: 0 0 5px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.75rem;
+    flex-wrap: wrap;
 }
 
 .project-title a {
+    font-size: 1.5rem;
+    color: var(--primary-text-color);
     text-decoration: none;
-    color: inherit;
+    font-weight: 700;
 }
 
 .project-title a:hover {
+    color: var(--accent-color);
     text-decoration: underline;
 }
 
 .project-date {
-    font-size: 0.9em;
-    color: #6c757d; /* Grey color for date/course */
-    display: block;
-    margin-bottom: 10px;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    color: var(--secondary-text-color);
+    margin-left: 1rem;
+    white-space: nowrap;
 }
 
 .project-description {
-    font-size: 1em;
-    line-height: 1.6;
-    color: #555;
-    margin-bottom: 20px;
-    flex-grow: 1; /* Allows description to take available space */
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    color: var(--secondary-text-color);
 }
 
 .project-visuals {
-    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+    justify-content: center;
+}
+
+.visual-item {
+    flex-basis: auto;
+    width: 100%;
+    max-width: 600px;
+    background-color: var(--card-bg-color);
+    padding: 0.5rem;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .project-visuals img {
+    width: 100%;
     max-width: 100%;
     height: auto;
     border-radius: 4px;
-    border: 1px solid #eee;
+    border: 1px solid rgba(255,255,255,0.1);
+    display: block;
 }
 
+@media (max-width: 600px) {
+    .visual-item {
+        max-width: 95%;
+    }
+}
+
+@media (max-width: 400px) {
+    .visual-item {
+        max-width: 100%;
+    }
+}
 
 .project-tags {
     list-style: none;
-    padding: 0;
-    margin: 0 0 20px 0;
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
 }
 
 .project-tags li {
-    background-color: #007bff;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 4px;
-    font-size: 0.85em;
+    background-color: rgba(187, 134, 252, 0.1);
+    color: var(--accent-color);
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-family: var(--font-mono);
 }
 
-.project-links .project-link {
-    /* Re-apply .btn styles or ensure they are inherited if this class is on a .btn element */
-    /* If .project-link is an <a> tag that should look like a button, it needs .btn class */
-    margin-right: 10px;
+.project-links a {
+    color: var(--accent-color);
+    text-decoration: none;
+    margin-right: 1.5rem;
+    font-weight: 500;
+    font-size: 0.9rem;
 }
 
-.project-links .project-link:last-child {
-    margin-right: 0;
+.project-links a:hover {
+    text-decoration: underline;
+    color: var(--link-hover-color);
 }
 
-
-/* Skills Section */
-#skills {
-    background-color: #fff;
+/* Writing Section */
+.writing-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+.writing-card {
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+.writing-card:last-child {
+    border-bottom: none;
+}
+.writing-title a {
+    font-size: 1.3rem;
+    color: var(--primary-text-color);
+    text-decoration: none;
+    font-weight: 700;
+}
+.writing-title a:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
+}
+.writing-excerpt {
+    font-size: 1rem;
+    color: var(--secondary-text-color);
+    margin: 0.5rem 0;
+}
+.writing-date {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--secondary-text-color);
+}
+.no-writing {
+    text-align: center;
+    color: var(--secondary-text-color);
+    font-style: italic;
 }
 
-.skills-list {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
-}
-
-.skills-list li {
-    background: #007bff;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-size: 1em;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
 
 /* Contact Section */
-#contact {
-    background-color: #333; /* Dark background */
-    color: #f4f4f4; /* Light text */
-    padding: 60px 0;
-}
-
-#contact h2 {
-    color: #fff; /* White title for dark background */
-}
-
-#contact p {
+.contact-section {
     text-align: center;
-    font-size: 1.1em;
-    margin-bottom: 20px;
 }
-
-#contact .social-links {
-    text-align: center;
-    margin-top: 20px;
+.contact-section h2::after {
+    left: 50%;
+    transform: translateX(-50%);
 }
-
-#contact .social-links a {
-    color: #fff; /* White social icons */
-    font-size: 2em; /* Larger icons */
-    margin: 0 15px; /* Space between icons */
+.contact-section p {
+    max-width: 600px;
+    margin: 0 auto 1.5rem auto;
+    font-size: 1.1rem;
+}
+.email-link {
+    display: inline-block;
+    font-size: 1.2rem;
+    color: var(--accent-color);
+    text-decoration: none;
+    padding: 10px 20px;
+    border: 1px solid var(--accent-color);
+    border-radius: 5px;
+    margin-bottom: 2rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.email-link:hover {
+    background-color: var(--accent-color);
+    color: var(--primary-bg-color);
+}
+.social-links a {
+    color: var(--secondary-text-color);
+    text-decoration: none;
+    margin: 0 1rem;
+    font-size: 1rem;
     transition: color 0.3s ease;
 }
-
-#contact .social-links a:hover {
-    color: #007bff; /* Highlight color on hover */
+.social-links a:hover {
+    color: var(--accent-color);
 }
 
-/* Footer Styles */
-footer {
+/* Footer */
+.footer {
     text-align: center;
-    padding: 25px 0;
-    background: #222; /* Slightly lighter dark for footer */
-    color: #ccc; /* Light grey text */
-    font-size: 0.9em;
+    padding: 2rem 0;
+    border-top: 1px solid var(--border-color);
+    font-size: 0.9rem;
+    color: var(--secondary-text-color);
 }
 
-
-/* Responsive Design */
+/* === Responsive Design === */
 @media (max-width: 768px) {
-    header .container {
+    .nav-logo {
+        font-size: clamp(0.75rem, 4vw, 1.3rem);
+        margin-bottom: 0.5rem;
+    }
+
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 0;
         flex-direction: column;
-        text-align: center;
+        background-color: var(--primary-bg-color);
+        width: 100%;
+        height: 100vh;
+        transition: left 0.3s ease-in-out;
+        box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+        padding-top: 80px;
+        justify-content: flex-start;
+        align-items: center;
+        z-index: 1000;
     }
 
-    nav ul {
-        flex-direction: column;
-        margin-top: 15px;
+    .nav-menu.active {
+        left: 0;
     }
 
-    nav ul li {
-        margin: 10px 0;
+    .nav-menu li {
+        margin: 1rem 0;
     }
 
-    .hero-content {
-        flex-direction: column-reverse;
-        text-align: center;
-        gap: 30px; /* Adjusted from 25px to original 30px */
+    .nav-menu a {
+        font-size: 1.1rem;
     }
 
-    .hero-text {
-        text-align: center;
-        /* max-width: 90%; */ /* Kept commented as original */
-        /* margin: 0 auto; */ /* Kept commented as original */
+    .hamburger {
+        display: block;
     }
 
-    /* MODIFIED FONT SIZING FOR HERO TITLE IN MEDIA QUERY */
-    .hero-text h1 {
-        /* Original: font-size: 2.2em; */
-        font-size: clamp(1.5em, 5vw + 0.5em, 2.2em); /* Min, Preferred, Max (max is original media query size) */
-        line-height: 1.2; /* Adjusted */
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
     }
 
-    /* MODIFIED FONT SIZING FOR HERO SUBTITLE IN MEDIA QUERY */
-    .hero-text .subtitle {
-        /* Original: font-size: 1em; */
-        font-size: clamp(0.8em, 3vw + 0.4em, 1em); /* Min, Preferred, Max */
-        line-height: 1.45; /* Adjusted */
+    .hero-section {
+        padding-top: 150px; /* Adjust based on actual navbar height on tablets */
+        min-height: 80vh; /* Slightly reduce min-height on tablets if needed */
+    }
+    /* MODIFIED HERO TITLE FONT SIZE FOR TABLET */
+    .hero-section h1 {
+        /* Original: font-size: 2.2rem; */
+        font-size: clamp(1.6rem, 5vw + 0.8rem, 2.2rem); /* Adjusted clamp for tablet */
+    }
+    /* MODIFIED HERO SUBTITLE FONT SIZE FOR TABLET */
+    .hero-section .subtitle {
+        /* Original: font-size: 1.1rem; */
+        font-size: clamp(0.85rem, 2.5vw + 0.4rem, 1.1rem); /* Adjusted clamp for tablet */
     }
 
-    section h2 {
-        font-size: 1.8em;
+    main h2 {
+        font-size: 1.8rem;
     }
-
-    .project-grid {
-        grid-template-columns: 1fr;
+    .project-title a {
+        font-size: 1.3rem;
+    }
+    .hero-photo {
+        max-width: 180px;
     }
 }
 
-/* Accessibility: Focus States for keyboard navigation */
-a:focus,
-button:focus,
-input:focus,
-textarea:focus,
-select:focus {
-    outline: 2px solid #007bff; /* Highlight focus */
-    outline-offset: 2px; /* Offset outline slightly */
-}
+@media (max-width: 480px) {
+    .nav-logo {
+        font-size: clamp(0.7rem, 5vw, 1.1rem);
+        width: 95%;
+    }
+    .nav-menu a {
+        font-size: 1rem;
+    }
 
-/* Smooth scrolling for anchor links */
-html {
-    scroll-behavior: smooth;
+    .hero-section {
+        padding-top: 130px; /* Adjust based on actual navbar height on small mobiles */
+        min-height: 75vh; /* Further reduce min-height on small mobiles if needed */
+    }
+    /* MODIFIED HERO TITLE FONT SIZE FOR MOBILE */
+    .hero-section h1 {
+        /* Original: font-size: 1.8rem; */
+        font-size: clamp(1.4rem, 6vw + 0.5rem, 1.8rem); /* Adjusted clamp for mobile */
+    }
+    /* MODIFIED HERO SUBTITLE FONT SIZE FOR MOBILE */
+    .hero-section .subtitle {
+        /* Original: font-size: 1rem; */
+        font-size: clamp(0.8rem, 3vw + 0.3rem, 1rem); /* Adjusted clamp for mobile */
+    }
+
+    .cta-button {
+        padding: 10px 20px;
+        font-size: clamp(0.8rem, 2.5vw, 0.9rem); /* Responsive font for button on small screens */
+    }
+    main section {
+        padding: 60px 0;
+    }
+    main h2 {
+        font-size: 1.6rem;
+        margin-bottom: 2rem;
+    }
+    .project-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .project-date {
+        margin-left: 0;
+        margin-top: 0.25rem;
+    }
+    .hero-photo {
+        max-width: 150px;
+    }
 }
