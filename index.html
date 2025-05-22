@@ -10,10 +10,13 @@
 <body>
     <nav class="navbar">
         <div class="container">
-            <ul class="nav-menu" style="text-align: center; width: 100%;"> {/* Added inline style for centering */}
-                <li style="display: inline; margin-right: 15px;">Queens, NY</li> {/* Changed to inline for horizontal layout */}
-                <li style="display: inline; margin-right: 15px;">javendeannaipaul@gmail.com</li>
-                <li style="display: inline;">(917)547-9923</li>
+            <a href="#hero" class="nav-logo">
+                <em>But seek first His kingdom and His righteousness, and all these things will be added to you.</em> Matthew 6:33
+            </a>
+            <ul class="nav-menu">
+                <li>Queens, NY</li>
+                <li>javendeannaipaul@gmail.com</li>
+                <li>(917)547-9923</li>
             </ul>
             <div class="hamburger">
                 <span class="bar"></span>
@@ -28,16 +31,15 @@
             <div class="hero-image-container">
                 <img src="IMG_6845-EDIT-EDIT.jpg" alt="A photo of Javendean" class="hero-photo">
           </div>
-          <h1>Hi, I'm Javendean. God bless you!</h1>
-          <p class="subtitle">First and foremost, I am a humble, loving disciple of Christ with a compassionate, God-fearing heart, who is dedicated to selfless, excellent servitude.
-                  Professionally, I am an experienced, adaptable analyst who is well-versed in financial modelling/analysis, proficient in multiple programming languages such as R, SQL, VBA, and Python.
-                  I have significant experience (both professional and academic) working with datasets of all sizes, ranging from tens to trillions.
-                  Feel free scrolling down for more about me or jumping to my projects/LinkedIn!</p>
+          <div class="hero-text-content"> <h1>Hi, I'm Javendean. God bless you!</h1>
+            <p class="subtitle">First and foremost, I am a humble, loving disciple of Christ with a compassionate, God-fearing heart, who is dedicated to selfless, excellent servitude.
+                    Professionally, I am an experienced, adaptable analyst who is well-versed in financial modelling/analysis, proficient in multiple programming languages such as R, SQL, VBA, and Python.
+                    I have significant experience (both professional and academic) working with datasets of all sizes, ranging from tens to trillions.
+                    Feel free scrolling down for more about me or jumping to my projects/LinkedIn!</p>
             </div>
-            <div> {/* Added a div to wrap buttons for easier styling if needed */}
-                <a href="#projects" class="cta-button">View Finance Projects</a> {/* Changed button text */}
-                <a href="#missionary-projects" class="cta-button" style="margin-left: 10px;">View Missionary Projects</a> {/* Added new button and target ID */}
-            </div>
+        </div>
+        <div style="text-align: center; margin-top: 2rem;"> <a href="#projects" class="cta-button">View Finance Projects</a>
+            <a href="#missionary-projects" class="cta-button" style="margin-left: 10px;">View Missionary Projects</a>
         </div>
     </header>
 
@@ -54,11 +56,9 @@
             </div>
         </section>
 
-        <section id="projects" class="projects-section"> {/* This remains for Finance Projects */}
-            <div class="container">
+        <section id="projects" class="projects-section"> <div class="container">
                 <h2>Selected Projects</h2>
                 <div class="project-grid">
-                    {/* ... Your existing project-card articles for finance projects ... */}
                     <article class="project-card">
                         <div class="project-header">
                             <h3 class="project-title"><a href="#">AmTrust Financial: Solvency II Capital Assessment</a></h3>
@@ -80,11 +80,11 @@
                             <li>Scenario Modeling</li>
                             <li>Regulatory Assessment</li>
                             <li>Data Visualization</li>
-			    <li>R</li>
-			    <li>Excel</li>
-		            <li>PPT</li>
-			    <li>Moody's B&H Economic Scenario Generator</li>
-			    <li>Bloomberg Terminal</li>
+                            <li>R</li>
+                            <li>Excel</li>
+                            <li>PPT</li>
+                            <li>Moody's B&H Economic Scenario Generator</li>
+                            <li>Bloomberg Terminal</li>
                         </ul>
                         <div class="project-links">
                             <a href="https://javendean.github.io/javendean.portfolio/RM%20790-Javendean%20Naipaul-23806137-AmTrust%20Financial%20Services%20Inc%20(1).pdf" target="_blank" rel="noopener noreferrer" class="project-link">View Full Report (PDF)</a>
@@ -100,26 +100,24 @@
                         <p class="project-description">
                             Developed a comprehensive 3-statement model to perform a detailed valuation of Walmart. This involved constructing integrated projections for the income statement, balance sheet, and cash flow statement, underpinned by specific analyses of the company's debt and capital structure. The core of the valuation was a Discounted Cash Flow (DCF) model, for which I determined appropriate assumptions, calculated the Weighted Average Cost of Capital (WACC) and terminal value, performing sensitivity analyses managed through a dedicated control sheet. Finally, the key findings and valuation range were consolidated into a summary and presented using a "football field" chart to provide a clear overview of the company's estimated intrinsic value. You can view analysis details and assumptions in the excel file if you'd like by clicking "View Excel".
                         </p>
-
                         <div class="project-visuals">
                             <div class="visual-item">
                                 <img src="Walmart-Summary.png" alt="Valuation summary for Walmart, e.g., Football Field Chart or DCF output">
                             </div>
                         </div>
-
                         <ul class="project-tags">
                             <li>Company Valuation</li>
                             <li>Financial Modeling</li>
                             <li>Advanced Excel</li>
                             <li>3-Statement Modeling</li>
-			    <li>Debt and Capital Structure</li>
+                            <li>Debt and Capital Structure</li>
                             <li>DCF Analysis</li>
                             <li>Comparable Company Analysis</li>
                             <li>Equity Research</li>
                             <li>Financial Projection</li>
                         </ul>
                         <div class="project-links">
-                            <a href="https://raw.githubusercontent.com/Javendean/javendean.portfolio/4370a2a4ecd5aaf42347612dcd8cc9434c710935/Walmart%20Valuation-9-8-21.xlsx" download="Walmart Valuation-9-8-21.xlsx">
+                            <a href="https://raw.githubusercontent.com/Javendean/javendean.portfolio/4370a2a4ecd5aaf42347612dcd8cc9434c710935/Walmart%20Valuation-9-8-21.xlsx" download="Walmart Valuation-9-8-21.xlsx" class="project-link">
                               View Model Details (Download Excel)
                             </a>
                         </div>
@@ -131,18 +129,16 @@
                         </div>
                         <p class="project-description">
                             Conducted a time series analysis of Google's stock returns, developing and evaluating GARCH models to understand and forecast volatility.
-				The project starts by importing raw Google price data, cleans and reshapes it into monthly returns, then explores the behaviour of both returns and price levels through intuitive charts.
-				Then, a forecasting model for average returns (ARIMA) and a separate model for changing volatility (GARCH) were built, and each model’s assumptions were checked using industry-standard statistical tests.
-				After processing, cleaning, and analyzing the data as well as developing and evaluating the models, I explain the maths behind the models, packaging the analysis in a polished, click-through HTML report—a workflow that mirrors the full data-to-insight pipeline you’d expect on a trading or risk-management desk.
-				Below are some key charts to summarize my findings. You can view the full report if you'd like by clicking View Full Analysis below.
+                            The project starts by importing raw Google price data, cleans and reshapes it into monthly returns, then explores the behaviour of both returns and price levels through intuitive charts.
+                            Then, a forecasting model for average returns (ARIMA) and a separate model for changing volatility (GARCH) were built, and each model’s assumptions were checked using industry-standard statistical tests.
+                            After processing, cleaning, and analyzing the data as well as developing and evaluating the models, I explain the maths behind the models, packaging the analysis in a polished, click-through HTML report—a workflow that mirrors the full data-to-insight pipeline you’d expect on a trading or risk-management desk.
+                            Below are some key charts to summarize my findings. You can view the full report if you'd like by clicking View Full Analysis below.
                         </p>
-
                         <div class="project-visuals">
                             <div class="visual-item">
                                 <img src="708-Summary.png" alt="Volatility plot from GARCH model of Google stock returns">
                             </div>
                         </div>
-
                         <ul class="project-tags">
                             <li>Time Series Analysis</li>
                             <li>Volatility Modeling (GARCH)</li>
@@ -157,16 +153,16 @@
                             <a href="FINAL-EXAM-MARKDOWN.html" target="_blank" rel="noopener noreferrer" class="project-link">View Full Analysis (View HTML)</a>
                         </div>
                     </article>
-                     <article class="project-card"> {/* Copied structure from above */}
+                     <article class="project-card">
                         <div class="project-header">
-                            <h3 class="project-title"><a href="final_project.Rmd">Machine Learning for Housing Price Prediction</a></h3>
+                            <h3 class="project-title"><a href="final_project.Rmd" target="_blank" rel="noopener noreferrer">Machine Learning for Housing Price Prediction</a></h3>
                             <span class="project-date">May 2023</span>
                         </div>
                         <p class="project-description">
                             Collaboratively developed machine learning models (Linear Regression, Regression Tree, Random Forest) in R to predict housing sale prices in Queens, NY.
-	                        First, we imported, cleaned, and prepared the data to correct inconsistencies, handle missing values, and create useful categories.
-	                        Then, exploratory analysis was done with charts and summary statistics to identify key factors influencing property prices.
-	                        Lastly, we developed, trained, and compared models to forecast housing prices. (achieving up to 85% R²) You can view the details of this project if you'd like by clicking "View Full Report".
+                            First, we imported, cleaned, and prepared the data to correct inconsistencies, handle missing values, and create useful categories.
+                            Then, exploratory analysis was done with charts and summary statistics to identify key factors influencing property prices.
+                            Lastly, we developed, trained, and compared models to forecast housing prices. (achieving up to 85% R²) You can view the details of this project if you'd like by clicking "View Full Report".
                         </p>
                         <div class="project-visuals">
                             <div class="visual-item">
@@ -191,23 +187,36 @@
             </div>
         </section>
 
-        <section id="missionary-projects" class="projects-section"> {/* Changed ID and class for consistency */}
+        <section id="missionary-projects" class="projects-section">
             <div class="container">
-                <h2>Missionary Projects</h2> {/* Changed title */}
-                <div class="project-grid"> {/* Changed class from writing-grid to project-grid */}
-                     <article class="project-card"> {/* Changed class from writing-card to project-card */}
+                <h2>Missionary Projects</h2>
+                <div class="project-grid">
+                     <article class="project-card">
                         <div class="project-header">
-                            <h3 class="project-title"><a href="[Link to Missionary Project]" target="_blank" rel="noopener noreferrer">Title of Your Missionary Project</a></h3>
-                             <span class="project-date">Date of Project</span> {/* Added date span like other projects */}
+                            <h3 class="project-title"><a href="Countries_Needing_Missonary_Work.pdf" target="_blank" rel="noopener noreferrer">Global Missionary Endeavors & Unreached Peoples</a></h3>
+                             <span class="project-date">[Date of Project, e.g., Ongoing or Current Focus]</span>
                         </div>
-                         <img src="Missionary.pdf" alt="Economic Analysis of countries in need of missionary work">
-                        <p class="project-description">A summary of your missionary project...</p> {/* Changed class from writing-excerpt to project-description */}
-                        {/* Optional: Add tags like other projects */}
-                        {/* Optional: Add links like other projects */}
-                        </article>
-                    {/* You can add more missionary projects here following the same structure */}
-                </div>
-                 <p class="no-writing" style="display: none;">I'm not actively involved in new missionary projects at the moment, but check back later!</p> {/* Updated message if needed */}
+                        <div class="project-visuals">
+                            <div class="visual-item">
+                                <img src="Missionary.png" alt="Visual representation of global missionary needs">
+                            </div>
+                        </div>
+                        <p class="project-description">
+                            Dedicated to understanding and highlighting the critical need for missionary work across various unreached people groups and regions globally. This ongoing project involves research into demographics, spiritual landscapes, and the challenges faced in bringing the Gospel to these communities. The aim is to foster awareness and prayerful support for global missions. The linked document provides an overview of key areas requiring immediate missionary focus.
+                        </p>
+                        <ul class="project-tags">
+                            <li>Global Missions</li>
+                            <li>Unreached People Groups</li>
+                            <li>Evangelism</li>
+                            <li>Missionary Research</li>
+                            <li>Prayer Support</li>
+                        </ul>
+                        <div class="project-links">
+                             <a href="Countries_Needing_Missonary_Work.pdf" target="_blank" rel="noopener noreferrer" class="project-link">View Focus Regions (PDF)</a>
+                        </div>
+                    </article>
+                    </div>
+                 <p class="no-writing" style="display: none;">More missionary project details coming soon!</p>
             </div>
         </section>
 
@@ -215,7 +224,7 @@
             <div class="container">
                 <h2>Get In Touch</h2>
                 <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of something great. Feel free to reach out!</p>
-                <a href="mailto:javendeannaipaul@gmail.com" class="email-link">javendeannaipaul@gmail.com</a> {/* Updated email */}
+                <a href="mailto:javendeannaipaul@gmail.com" class="email-link">javendeannaipaul@gmail.com</a>
                 <div class="social-links">
                     <a href="[Your LinkedIn URL]" target="_blank" rel="noopener noreferrer">LinkedIn</a>
                     <a href="[Your GitHub URL]" target="_blank" rel="noopener noreferrer">GitHub</a>
