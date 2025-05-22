@@ -15,8 +15,10 @@
             </a>
             <ul class="nav-menu">
                 <li>Queens, NY</li>
-                <li>javendeannaipaul@gmail.com</li>
-                <li>(917)547-9923</li>
+                <li><a href="mailto:javendeannaipaul@gmail.com" class="nav-contact-link">javendeannaipaul@gmail.com</a></li>
+                <li><a href="tel:(917)547-9923" class="nav-contact-link">(917)547-9923</a></li>
+                <li><a href="[Your LinkedIn URL]" target="_blank" rel="noopener noreferrer" class="nav-social-link">LinkedIn</a></li> {/* MODIFIED: Added LinkedIn */}
+                <li><a href="[Your GitHub URL]" target="_blank" rel="noopener noreferrer" class="nav-social-link">GitHub</a></li>   {/* MODIFIED: Added GitHub */}
             </ul>
             <div class="hamburger">
                 <span class="bar"></span>
@@ -44,20 +46,8 @@
     </header>
 
     <main>
-        <section id="about" class="about-section">
-            <div class="container">
-                <h2>A Bit About Me</h2>
-                <div class="about-content">
-                    <div class="about-text">
-                        <p>Hello! I'm Javendean. [Share your background, what drives you, and your key skills. Keep it concise and engaging, similar to the example site.]</p>
-                        <p>[Add another paragraph about your interests or what you're currently learning/working on.]</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <section id="projects" class="projects-section"> <div class="container">
-                <h2>Selected Projects</h2>
+                <h2>Finance Projects</h2> {/* MODIFIED: Renamed "Selected Projects" */}
                 <div class="project-grid">
                     <article class="project-card">
                         <div class="project-header">
@@ -222,12 +212,19 @@
 
         <section id="contact" class="contact-section">
             <div class="container">
-                <h2>Get In Touch</h2>
+                <h2>Get In Touch</h2> {/* Title is already centered by .contact-section text-align: center; and its ::after pseudo-element styling */}
                 <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of something great. Feel free to reach out!</p>
-                <a href="mailto:javendeannaipaul@gmail.com" class="email-link">javendeannaipaul@gmail.com</a>
+
+                {/* MODIFIED: Added navbar info here */}
+                <div class="contact-details">
+                    <p>Queens, NY</p>
+                    <p><a href="mailto:javendeannaipaul@gmail.com" class="email-link standalone">javendeannaipaul@gmail.com</a></p>
+                    <p><a href="tel:(917)547-9923" class="contact-tel-link">(917)547-9923</a></p>
+                </div>
+
                 <div class="social-links">
-                    <a href="[Your LinkedIn URL]" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                    <a href="[Your GitHub URL]" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <a href="[https://www.linkedin.com/in/javendean-naipaul-229b11169/]" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    <a href="[https://github.com/Javendean]" target="_blank" rel="noopener noreferrer">GitHub</a>
                 </div>
             </div>
         </section>

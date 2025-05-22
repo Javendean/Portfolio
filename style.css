@@ -5,7 +5,7 @@
     --primary-bg-color: #121212;
     --primary-text-color: #e0e0e0;
     --secondary-text-color: #a0a0a0;
-    --accent-color: #bb86fc; /* Example accent color (purple) - change as you like */
+    --accent-color: #bb86fc;
     --card-bg-color: #1e1e1e;
     --border-color: #333333;
     --link-hover-color: #ffffff;
@@ -29,51 +29,52 @@ body {
     background-color: var(--primary-bg-color);
     color: var(--primary-text-color);
     line-height: 1.7;
-    font-size: 16px; /* Base font size */
+    font-size: 16px;
 }
 
 /* Container for general content sections (not navbar) */
 .container {
     width: 90%;
-    max-width: 960px; /* Default max-width for general sections */
+    max-width: 960px;
     margin: 0 auto;
     padding: 0 15px;
 }
 
-/* === Navigation Bar === */
+/* === Navigation Bar (MODIFIED) === */
 .navbar {
-    background-color: rgba(18, 18, 18, 0.85); /* Semi-transparent dark */
-    backdrop-filter: blur(10px); /* Glassmorphism effect */
-    padding: 1rem 0; /* Overall padding for the navbar */
+    background-color: rgba(18, 18, 18, 0.85);
+    backdrop-filter: blur(10px);
+    padding: 0.75rem 0;
     position: fixed;
     width: 100%;
     top: 0;
     left: 0;
     z-index: 1000;
     border-bottom: 1px solid var(--border-color);
-    min-height: auto; /* Let content determine height */
+    min-height: auto;
     display: flex;
-    justify-content: center; /* Center the .navbar .container */
+    justify-content: center;
 }
 
 .navbar .container {
     width: 90%;
     max-width: 1100px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
-    text-align: center;
 }
 
 .nav-logo {
     color: var(--primary-text-color);
     text-decoration: none;
     font-style: italic;
-    font-size: clamp(0.8rem, 3vw, 1.5rem);
+    font-size: clamp(0.75rem, 1.8vw, 1.1rem);
     font-weight: 500;
-    line-height: 1.5;
-    width: 100%;
-    margin-bottom: 0.75rem;
+    line-height: 1.4;
+    text-align: left;
+    flex-shrink: 0;
+    margin-right: 1rem;
 }
 
 .nav-logo em {
@@ -83,33 +84,43 @@ body {
 .nav-menu {
     list-style: none;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-wrap: wrap; /* Allow items to wrap if space is very tight */
+    justify-content: flex-end;
+    align-items: center;
     padding-left: 0;
     margin: 0;
-    width: 100%;
 }
 
 .nav-menu li {
-    margin: 0.25rem 0.75rem;
+    margin: 0 0.5rem; /* MODIFIED: Slightly reduced margin for more items */
 }
 
-.nav-menu a {
+.nav-menu li:last-child {
+    margin-right: 0;
+}
+
+/* Styling for all links in nav-menu, including new social links */
+.nav-menu a,
+.nav-menu .nav-contact-link, /* Target new <a> tags for email/phone */
+.nav-menu .nav-social-link {   /* Target new <a> tags for social media */
     color: var(--secondary-text-color);
     text-decoration: none;
-    font-size: 0.95rem;
+    font-size: 0.85rem; /* MODIFIED: Slightly smaller to accommodate more items */
     transition: color 0.3s ease;
     white-space: nowrap;
 }
 
-.nav-menu a:hover, .nav-menu a.active {
+.nav-menu a:hover,
+.nav-menu .nav-contact-link:hover,
+.nav-menu .nav-social-link:hover,
+.nav-menu a.active {
     color: var(--accent-color);
 }
+
 
 .hamburger {
     display: none;
     cursor: pointer;
-    margin-top: 0.75rem;
     z-index: 1001;
     position: relative;
 }
@@ -124,7 +135,7 @@ body {
 }
 
 
-/* Hero Section */
+/* Hero Section (MODIFIED) */
 .hero-section {
     min-height: 90vh;
     display: flex;
@@ -132,31 +143,28 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding-top: 180px; /* Adjust this based on your navbar's final height */
+    padding-top: 100px;
     padding-bottom: 60px;
-    /* overflow-x: hidden; /* Uncomment if needed */
 }
 
-/* MODIFIED: .container within .hero-section for side-by-side layout */
 .hero-section .container {
     display: flex;
-    flex-direction: row;    /* Image left, text right by default */
-    align-items: center;    /* Vertically align image and text block */
-    justify-content: center;/* Center the pair if they don't fill max-width */
-    gap: 2.5rem;            /* Space between image and text block */
-    max-width: 1100px;      /* Increased max-width for hero layout */
-    width: 90%;             /* Maintain overall width responsiveness */
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    max-width: 1100px;
+    width: 90%;
 }
 
-/* MODIFIED: .hero-image-container for flex layout */
 .hero-image-container {
-    margin-bottom: 0; /* Remove bottom margin, no longer needed for vertical stacking */
-    flex-shrink: 0;   /* Prevent image from shrinking disproportionately */
+    margin-bottom: 0;
+    flex-shrink: 0;
 }
 
-.hero-photo { /* With auto-sizing max-width */
+.hero-photo {
     width: 100%;
-    max-width: clamp(120px, 25vw, 200px); /* Min, Preferred, Max */
+    max-width: clamp(180px, 28vw, 280px);
     height: auto;
     border-radius: 50%;
     object-fit: cover;
@@ -165,39 +173,30 @@ body {
     display: block;
 }
 
-/* NEW: Wrapper for hero text content */
 .hero-text-content {
-    flex: 1; /* Allow text content to take up available space */
-    text-align: left; /* Align text to the left for this block */
-    max-width: 650px; /* Optional: constrain text width */
+    flex: 1;
+    text-align: left;
+    max-width: 650px;
 }
 
-/* Auto-sizing Hero Title (styles inherited from .hero-section h1) */
-.hero-section h1 { /* This rule applies to h1 inside .hero-text-content too */
-    font-size: clamp(1.6rem, 4vw + 0.8rem, 2.8rem); /* Min, Preferred, Max */
+.hero-section h1 {
+    font-size: clamp(1.6rem, 4vw + 0.8rem, 2.8rem);
     line-height: 1.25;
-    margin-bottom: 0.75rem; /* Adjusted margin */
+    margin-bottom: 0.75rem;
     color: var(--primary-text-color);
 }
 
-/* Auto-sizing Hero Subtitle (styles inherited from .hero-section .subtitle) */
-.hero-section .subtitle { /* This rule applies to .subtitle inside .hero-text-content too */
-    font-size: clamp(0.85rem, 2vw + 0.4rem, 1.3rem); /* Min, Preferred, Max */
+.hero-section .subtitle {
+    font-size: clamp(0.85rem, 2vw + 0.4rem, 1.3rem);
     line-height: 1.6;
     color: var(--secondary-text-color);
-    margin-bottom: clamp(1.5rem, 4vh, 2rem); /* Responsive bottom margin */
-    max-width: 600px; /* Applies to the paragraph for line length */
-    /* margin-left and margin-right will be 0 due to .hero-text-content's text-align: left */
+    margin-bottom: clamp(1.5rem, 4vh, 2rem);
+    max-width: 600px;
 }
 
-/* Ensure .subtitle within .hero-text-content doesn't have conflicting auto margins */
 .hero-text-content .subtitle {
     margin-left: 0;
     margin-right: 0;
-}
-
-.hero-text-content .cta-button {
-    margin-top: 1.5rem; /* Space above button */
 }
 
 .cta-button {
@@ -224,7 +223,7 @@ main section {
 main h2 {
     font-size: 2.2rem;
     margin-bottom: 3rem;
-    text-align: left;
+    text-align: left; /* Default for section titles */
     position: relative;
     padding-bottom: 10px;
 }
@@ -232,30 +231,14 @@ main h2 {
 main h2::after {
     content: '';
     position: absolute;
-    left: 0;
+    left: 0; /* Default for section titles */
     bottom: 0;
     width: 50px;
     height: 3px;
     background-color: var(--accent-color);
 }
 
-
-/* About Section */
-.about-content {
-    /* Styles for .about-content if any */
-}
-
-.about-text {
-    min-width: 280px;
-    font-size: 1.05rem;
-}
-
-.about-text p {
-    margin-bottom: 1.25rem;
-}
-
-
-/* Projects Section */
+/* Projects Section (RESTORED TO ORIGINAL single column) */
 .project-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -420,19 +403,52 @@ main h2::after {
 }
 
 
-/* Contact Section */
+/* Contact Section (MODIFIED) */
 .contact-section {
+    text-align: center; /* This centers the h2 and p description */
+}
+
+/* MODIFIED: Ensures h2 and its ::after are centered */
+.contact-section h2 {
     text-align: center;
 }
 .contact-section h2::after {
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%); /* This centers the accent line under the h2 */
 }
-.contact-section p {
+
+.contact-section p { /* This is for the introductory paragraph */
     max-width: 600px;
     margin: 0 auto 1.5rem auto;
     font-size: 1.1rem;
 }
+
+/* NEW: Styling for the added contact details block */
+.contact-details {
+    margin-bottom: 1.5rem; /* Space before the social links */
+    line-height: 1.8; /* Increase line height for readability */
+}
+
+.contact-details p {
+    font-size: 1rem; /* Adjust size as needed */
+    color: var(--secondary-text-color);
+    margin-bottom: 0.5rem; /* Space between each contact item */
+}
+
+.contact-details a.email-link.standalone, /* Style for the email link within contact-details */
+.contact-details a.contact-tel-link {    /* Style for the tel link */
+    color: var(--accent-color);
+    text-decoration: none;
+    /* display: inline; Remove border and padding from original .email-link if not desired here */
+}
+
+.contact-details a.email-link.standalone:hover,
+.contact-details a.contact-tel-link:hover {
+    text-decoration: underline;
+    color: var(--link-hover-color);
+}
+
+/* Original .email-link for the button-style link (you might remove this if redundant) */
 .email-link {
     display: inline-block;
     font-size: 1.2rem;
@@ -447,6 +463,11 @@ main h2::after {
 .email-link:hover {
     background-color: var(--accent-color);
     color: var(--primary-bg-color);
+}
+
+
+.social-links { /* Keep this centered as well */
+    margin-top: 1rem; /* Add some space if .contact-details is present */
 }
 .social-links a {
     color: var(--secondary-text-color);
@@ -468,14 +489,15 @@ main h2::after {
     color: var(--secondary-text-color);
 }
 
-/* === Responsive Design === */
+/* === Responsive Design (Includes MODIFICATIONS for Navbar and Hero) === */
 @media (max-width: 768px) {
     .nav-logo {
-        font-size: clamp(0.75rem, 4vw, 1.3rem);
-        margin-bottom: 0.5rem;
+        font-size: clamp(0.75rem, 3vw, 1.1rem);
+        margin-bottom: 0;
+        margin-right: 0.5rem;
     }
 
-    .nav-menu {
+    .nav-menu { /* This is the slide-in menu */
         position: fixed;
         left: -100%;
         top: 0;
@@ -496,10 +518,12 @@ main h2::after {
     }
 
     .nav-menu li {
-        margin: 1rem 0;
+        margin: 1rem 0; /* For items in the slide-out menu */
     }
 
-    .nav-menu a {
+    .nav-menu a,
+    .nav-menu .nav-contact-link,
+    .nav-menu .nav-social-link { /* For items in the slide-out menu */
         font-size: 1.1rem;
     }
 
@@ -518,38 +542,33 @@ main h2::after {
     }
 
     .hero-section {
-        padding-top: 150px;
+        padding-top: 90px;
     }
-    /* MODIFIED: Hero container for stacking */
     .hero-section .container {
-        flex-direction: column; /* Stack image and text */
-        max-width: 90%;    /* Adjust max-width for stacked layout */
-        gap: 2rem; /* Maintain or adjust gap for vertical stacking */
+        flex-direction: column;
+        max-width: 90%;
+        gap: 2rem;
     }
 
-    /* MODIFIED: Hero image container for stacking */
     .hero-image-container {
-        margin-bottom: 2rem; /* Add back margin for vertical stacking */
+        margin-bottom: 1.5rem;
     }
-    .hero-photo { /* Auto-sizing for tablet */
-        max-width: clamp(110px, 22vw, 180px);
+    .hero-photo {
+        max-width: clamp(130px, 30vw, 200px);
     }
 
-    /* MODIFIED: Hero text content for stacking */
     .hero-text-content {
-        text-align: center; /* Center text when stacked */
+        text-align: center;
     }
-    .hero-text-content .subtitle { /* Ensure subtitle centers correctly when block is centered */
+    .hero-text-content .subtitle {
         margin-left: auto;
         margin-right: auto;
     }
 
-    /* Auto-sizing Hero Title for tablet */
     .hero-section h1 {
         font-size: clamp(1.4rem, 5vw + 0.6rem, 2.2rem);
         line-height: 1.2;
     }
-    /* Auto-sizing Hero Subtitle for tablet */
     .hero-section .subtitle {
         font-size: clamp(0.8rem, 2.5vw + 0.3rem, 1.1rem);
         line-height: 1.5;
@@ -565,33 +584,33 @@ main h2::after {
 
 @media (max-width: 480px) {
     .nav-logo {
-        font-size: clamp(0.7rem, 5vw, 1.1rem);
-        width: 95%;
+        font-size: clamp(0.7rem, 4vw, 1rem);
+        width: auto;
     }
-    .nav-menu a {
+    .nav-menu a, /* For items in the slide-out menu */
+    .nav-menu .nav-contact-link,
+    .nav-menu .nav-social-link {
         font-size: 1rem;
     }
 
+
     .hero-section {
-        padding-top: 130px;
+        padding-top: 80px;
     }
-    /* Further adjustments for hero stacking on small mobile */
     .hero-section .container {
         gap: 1.5rem;
     }
     .hero-image-container {
         margin-bottom: 1.5rem;
     }
-    .hero-photo { /* Auto-sizing for mobile */
-        max-width: clamp(100px, 20vw, 150px);
+    .hero-photo {
+        max-width: clamp(110px, 28vw, 160px);
     }
 
-    /* Auto-sizing Hero Title for mobile */
     .hero-section h1 {
         font-size: clamp(1.2rem, 6vw + 0.4rem, 1.8rem);
         line-height: 1.2;
     }
-    /* Auto-sizing Hero Subtitle for mobile */
     .hero-section .subtitle {
         font-size: clamp(0.75rem, 3vw + 0.25rem, 1rem);
         line-height: 1.45;
