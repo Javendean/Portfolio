@@ -40,11 +40,11 @@ body {
     padding: 0 15px;
 }
 
-/* === Navigation Bar (MODIFIED) === */
+/* === Navigation Bar (Stacked & Centered as per fix.jpg) === */
 .navbar {
     background-color: rgba(18, 18, 18, 0.85);
     backdrop-filter: blur(10px);
-    padding: 0.75rem 0;
+    padding: 1rem 0; /* Padding for the navbar block */
     position: fixed;
     width: 100%;
     top: 0;
@@ -53,28 +53,27 @@ body {
     border-bottom: 1px solid var(--border-color);
     min-height: auto;
     display: flex;
-    justify-content: center;
+    justify-content: center; /* Centers the .navbar .container within the full width navbar */
 }
 
 .navbar .container {
     width: 90%;
-    max-width: 1100px;
+    max-width: 1100px; /* Max width for the content within the navbar */
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column; /* Stacks .nav-logo above .nav-menu */
+    align-items: center;    /* Horizontally centers .nav-logo and .nav-menu */
+    text-align: center;     /* Default text alignment for children */
 }
 
 .nav-logo {
     color: var(--primary-text-color);
     text-decoration: none;
     font-style: italic;
-    font-size: clamp(0.75rem, 1.8vw, 1.1rem);
+    font-size: clamp(0.8rem, 3vw, 1.5rem); /* Font size for the quote */
     font-weight: 500;
-    line-height: 1.4;
-    text-align: left;
-    flex-shrink: 0;
-    margin-right: 1rem;
+    line-height: 1.5;
+    width: 100%; /* Allows text within to be centered effectively */
+    margin-bottom: 0.75rem; /* Space between the quote and the menu items below */
 }
 
 .nav-logo em {
@@ -83,31 +82,29 @@ body {
 
 .nav-menu {
     list-style: none;
-    display: flex;
-    flex-wrap: wrap; /* Allow items to wrap if space is very tight */
-    justify-content: flex-end;
-    align-items: center;
+    display: flex;           /* Lays out <li> items in a row */
+    flex-wrap: wrap;         /* Allows items to wrap to a new line if space is insufficient */
+    justify-content: center; /* Horizontally centers the group of <li> items */
+    align-items: center;     /* Vertically aligns items if they wrap to multiple lines */
     padding-left: 0;
     margin: 0;
+    width: 100%; /* Ensures the ul takes available width for centering its items */
 }
 
 .nav-menu li {
-    margin: 0 0.5rem; /* MODIFIED: Slightly reduced margin for more items */
+    margin: 0.25rem 0.75rem; /* Provides equal horizontal spacing around each menu item */
+                             /* Vertical margin handles spacing if items wrap */
 }
 
-.nav-menu li:last-child {
-    margin-right: 0;
-}
-
-/* Styling for all links in nav-menu, including new social links */
+/* Styling for links within the .nav-menu */
 .nav-menu a,
-.nav-menu .nav-contact-link, /* Target new <a> tags for email/phone */
-.nav-menu .nav-social-link {   /* Target new <a> tags for social media */
+.nav-menu .nav-contact-link,
+.nav-menu .nav-social-link {
     color: var(--secondary-text-color);
     text-decoration: none;
-    font-size: 0.85rem; /* MODIFIED: Slightly smaller to accommodate more items */
+    font-size: 0.95rem; /* Font size for the contact/social links */
     transition: color 0.3s ease;
-    white-space: nowrap;
+    white-space: nowrap; /* Prevents individual links like email from breaking mid-text */
 }
 
 .nav-menu a:hover,
@@ -117,10 +114,11 @@ body {
     color: var(--accent-color);
 }
 
-
+/* Hamburger for mobile view */
 .hamburger {
-    display: none;
+    display: none; /* Hidden on desktop */
     cursor: pointer;
+    margin-top: 0.75rem;
     z-index: 1001;
     position: relative;
 }
@@ -135,7 +133,7 @@ body {
 }
 
 
-/* Hero Section (MODIFIED) */
+/* Hero Section */
 .hero-section {
     min-height: 90vh;
     display: flex;
@@ -143,11 +141,11 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding-top: 100px;
+    /* padding-top will be set by script.js */
     padding-bottom: 60px;
 }
 
-.hero-section .container {
+.hero-section .container { /* Container for image and text block */
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -155,6 +153,7 @@ body {
     gap: 3rem;
     max-width: 1100px;
     width: 90%;
+    /* This container does not directly contain the CTA buttons */
 }
 
 .hero-image-container {
@@ -199,6 +198,14 @@ body {
     margin-right: 0;
 }
 
+/* NEW: Styling for the hero section's CTA button container */
+.hero-cta-container {
+    text-align: left;
+    margin-top: 2rem; /* Space above the buttons */
+    margin-bottom: 1.5rem; /* ADDED: Space below the buttons, before hero section padding-bottom. ~10pt is roughly 0.8rem or 13px. 1.5rem gives more noticeable space. */
+    width: 100%; /* Ensures it's part of the hero section's main flow for alignment */
+}
+
 .cta-button {
     display: inline-block;
     background-color: var(--accent-color);
@@ -223,7 +230,7 @@ main section {
 main h2 {
     font-size: 2.2rem;
     margin-bottom: 3rem;
-    text-align: left; /* Default for section titles */
+    text-align: left;
     position: relative;
     padding-bottom: 10px;
 }
@@ -231,14 +238,14 @@ main h2 {
 main h2::after {
     content: '';
     position: absolute;
-    left: 0; /* Default for section titles */
+    left: 0;
     bottom: 0;
     width: 50px;
     height: 3px;
     background-color: var(--accent-color);
 }
 
-/* Projects Section (RESTORED TO ORIGINAL single column) */
+/* Projects Section (Single column) */
 .project-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -403,43 +410,40 @@ main h2::after {
 }
 
 
-/* Contact Section (MODIFIED) */
+/* Contact Section */
 .contact-section {
-    text-align: center; /* This centers the h2 and p description */
+    text-align: center;
 }
 
-/* MODIFIED: Ensures h2 and its ::after are centered */
 .contact-section h2 {
     text-align: center;
 }
 .contact-section h2::after {
     left: 50%;
-    transform: translateX(-50%); /* This centers the accent line under the h2 */
+    transform: translateX(-50%);
 }
 
-.contact-section p { /* This is for the introductory paragraph */
+.contact-section p {
     max-width: 600px;
     margin: 0 auto 1.5rem auto;
     font-size: 1.1rem;
 }
 
-/* NEW: Styling for the added contact details block */
 .contact-details {
-    margin-bottom: 1.5rem; /* Space before the social links */
-    line-height: 1.8; /* Increase line height for readability */
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
 }
 
 .contact-details p {
-    font-size: 1rem; /* Adjust size as needed */
+    font-size: 1rem;
     color: var(--secondary-text-color);
-    margin-bottom: 0.5rem; /* Space between each contact item */
+    margin-bottom: 0.5rem;
 }
 
-.contact-details a.email-link.standalone, /* Style for the email link within contact-details */
-.contact-details a.contact-tel-link {    /* Style for the tel link */
+.contact-details a.email-link.standalone,
+.contact-details a.contact-tel-link {
     color: var(--accent-color);
     text-decoration: none;
-    /* display: inline; Remove border and padding from original .email-link if not desired here */
 }
 
 .contact-details a.email-link.standalone:hover,
@@ -448,7 +452,6 @@ main h2::after {
     color: var(--link-hover-color);
 }
 
-/* Original .email-link for the button-style link (you might remove this if redundant) */
 .email-link {
     display: inline-block;
     font-size: 1.2rem;
@@ -465,9 +468,8 @@ main h2::after {
     color: var(--primary-bg-color);
 }
 
-
-.social-links { /* Keep this centered as well */
-    margin-top: 1rem; /* Add some space if .contact-details is present */
+.social-links {
+    margin-top: 1rem;
 }
 .social-links a {
     color: var(--secondary-text-color);
@@ -489,17 +491,16 @@ main h2::after {
     color: var(--secondary-text-color);
 }
 
-/* === Responsive Design (Includes MODIFICATIONS for Navbar and Hero) === */
+/* === Responsive Design === */
 @media (max-width: 768px) {
     .nav-logo {
-        font-size: clamp(0.75rem, 3vw, 1.1rem);
-        margin-bottom: 0;
-        margin-right: 0.5rem;
+        font-size: clamp(0.75rem, 4vw, 1.3rem);
+        margin-bottom: 0.5rem;
     }
 
-    .nav-menu { /* This is the slide-in menu */
+    .nav-menu.active {
         position: fixed;
-        left: -100%;
+        left: 0;
         top: 0;
         flex-direction: column;
         background-color: var(--primary-bg-color);
@@ -513,19 +514,24 @@ main h2::after {
         z-index: 1000;
     }
 
-    .nav-menu.active {
-        left: 0;
+    .nav-menu:not(.active) {
+     /* On mobile, before hamburger is clicked, the nav-menu items might still be visible if they fit.
+        If you want them explicitly hidden and only shown via hamburger, you'd add display:none here
+        and the hamburger would control .active class to show the full screen menu.
+        However, current setup has .nav-menu display:flex always for desktop, and hamburger toggles .active.
+        The .active styles for nav-menu are for the slide-out version.
+     */
+    }
+     .nav-menu.active li {
+        margin: 1rem 0;
     }
 
-    .nav-menu li {
-        margin: 1rem 0; /* For items in the slide-out menu */
-    }
-
-    .nav-menu a,
-    .nav-menu .nav-contact-link,
-    .nav-menu .nav-social-link { /* For items in the slide-out menu */
+    .nav-menu.active a,
+    .nav-menu.active .nav-contact-link,
+    .nav-menu.active .nav-social-link {
         font-size: 1.1rem;
     }
+
 
     .hamburger {
         display: block;
@@ -542,7 +548,7 @@ main h2::after {
     }
 
     .hero-section {
-        padding-top: 90px;
+        /* padding-top will be set by script.js; ensure script runs after DOM content loaded */
     }
     .hero-section .container {
         flex-direction: column;
@@ -584,18 +590,18 @@ main h2::after {
 
 @media (max-width: 480px) {
     .nav-logo {
-        font-size: clamp(0.7rem, 4vw, 1rem);
-        width: auto;
+        font-size: clamp(0.7rem, 5vw, 1.1rem);
+        width: 95%;
     }
-    .nav-menu a, /* For items in the slide-out menu */
-    .nav-menu .nav-contact-link,
-    .nav-menu .nav-social-link {
+
+    .nav-menu.active a,
+    .nav-menu.active .nav-contact-link,
+    .nav-menu.active .nav-social-link {
         font-size: 1rem;
     }
 
-
     .hero-section {
-        padding-top: 80px;
+         /* padding-top will be set by script.js */
     }
     .hero-section .container {
         gap: 1.5rem;
