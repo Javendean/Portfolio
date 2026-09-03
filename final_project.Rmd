@@ -3,9 +3,9 @@ title: "MATH342W Final Project"
 author: 
 - "Javendean Naipaul"
 - "In collaboration with"
-- "Aracely Menjivar"
-- "Peter Antonaros"
-- "Lamae Maharaj"
+- "Aracely"
+- "Peter"
+- "Lamae"
 output:
   pdf_document:
     latex_engine: xelatex
